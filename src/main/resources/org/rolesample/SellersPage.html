@@ -1,0 +1,49 @@
+<!--
+  ~ This is free and unencumbered software released into the public domain.
+  -->
+<html>
+<head>
+    <wicket:head>
+        <title>Role Engineering Sample Project Seller's Page</title>
+    </wicket:head>
+</head>
+<body>
+<wicket:extend>
+    <h1>Seller's Page</h1>
+
+    <form wicket:id="pageForm">
+
+        <span wicket:id="label1"></span>
+        <br>
+        <br>
+        <fieldset>
+            <legend>These buttons are allowed for 'Sellers'</legend>
+
+            <table id="inputFormTable">
+                <tr>
+                    <td>
+                        <input type="button"
+                               class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                               wicket:id="item.ship" value="item.ship" name="item.ship"/>
+                    </td>
+                    <td>
+                        <b>Object: Item; Operation: Ship;</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button"
+                               class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                               wicket:id="auction.create" value="auction.create" name="auction.create"/>
+                    </td>
+                    <td>
+                        <b>Object: Auction; Operation: Create;</b>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+</wicket:extend>
+This is free and unencumbered software released into the public domain.
+</body>
+</html>

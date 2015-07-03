@@ -1,0 +1,41 @@
+#
+# This is free and unencumbered software released into the public domain.
+#
+
+# This param tells fortress what type of ldap server in use:
+ldap.server.type=apacheds
+
+# ldap host name
+host=localhost
+
+# if ApacheDS is listening on
+port=10389
+
+# If ApacheDS, these credentials are used for read/write to fortress DIT
+admin.user=uid=admin,ou=system
+admin.pw=secret
+
+# This is min/max settings for admin pool connections:
+min.admin.conn=1
+max.admin.conn=10
+
+# This node contains more fortress properties stored on behalf of connecting LDAP clients:
+config.realm=DEFAULT
+config.root=ou=Config,dc=example,dc=com
+
+# Used by application security components:
+perms.cached=true
+
+# Fortress uses a cache:
+ehcache.config.file=ehcache.xml
+
+# Default for pool reconnect flag is false:
+enable.pool.reconnect=true
+
+# Used when connecting with Fortress Rest instead of LDAP:
+#enable.mgr.impl.rest=true
+# If using EnMasse, these parameters needed:
+#http.user=demouser4
+#http.pw=gX9JbCTxJW5RiH+otQEX0Ja0RIAoPBQf
+#http.host=localhost
+#http.port=8080

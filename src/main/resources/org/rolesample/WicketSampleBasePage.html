@@ -1,0 +1,63 @@
+<!--
+  ~ This is free and unencumbered software released into the public domain.
+  -->
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="keywords"
+          content="wicket jquery, wicket jquery ui, autocomplete, dialog, draggable, droppable, progress bar, wizard, kendo ui, border layout, calendar"/>
+    <link rel="stylesheet" type="text/css" href="css/my-style.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui-1.10.2.custom.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="css/kendo/kendo.common.min.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="css/kendo/kendo.default.min.css" media="all"/>
+    <title>Role Engineering Sample Project Page</title>
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+</head>
+<body>
+<div id="header">
+    <h3>
+        <a href="#" wicket:id="buyerspage.link">Buyer's Page</a>
+        &nbsp
+        <a href="#" wicket:id="sellerspage.link">Seller's Page</a>
+        &nbsp
+        <a href="#" wicket:id="logout.link">LOGOUT</a>
+    </h3>
+    <form wicket:id="usersForm">
+
+        <fieldset>
+            <legend>These buttons are allowed for all 'Users'</legend>
+
+            <table id="inputFormTable">
+                <tr>
+                    <td>
+                        <input type="button"
+                               class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                               wicket:id="item.search" value="item.search" name="item.search"/>
+                    </td>
+                    <td>
+                        <b>Object: Item; Operation: Search;</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button"
+                               class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                               wicket:id="account.create" value="account.create" name="account.create"/>
+                    </td>
+                    <td>
+                        <b>Object: Account; Operation: Create;</b>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+
+</div>
+<div id="body">
+    <wicket:child />
+</div>
+<div id="footer">
+	<span wicket:id="footer"></span>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ This is free and unencumbered software released into the public domain.
+  -->
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <display-name>Role Engineering Sample Project</display-name>
+
+    <filter>
+        <filter-name>org.rolesample</filter-name>
+        <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+        <init-param>
+            <param-name>applicationClassName</param-name>
+            <param-value>org.rolesample.WicketApplication</param-value>
+        </init-param>
+    </filter>
+
+    <!-- Needed for wicket framework to have control of things. -->
+    <filter-mapping>
+        <filter-name>org.rolesample</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+
+
+    <!-- TODO STEP 4a: uncomment to enable fortress spring bean injection: -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <!-- TODO STEP 4b: uncomment to enable Java EE Security: -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>app</web-resource-name>
+            <url-pattern>/wicket/bookmarkable/org.rolesample.LogoutPage</url-pattern>
+        </web-resource-collection>
+        <!-- OMIT auth-constraint -->
+    </security-constraint>
+    <security-constraint>
+        <display-name>Role Engineering Sample Security Constraints</display-name>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <url-pattern>/wicket/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>Users</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>FortressRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login/login.html</form-login-page>
+            <form-error-page>/login/error.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <role-name>Users</role-name>
+    </security-role>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/login/unauthorized.html</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/login/pagenotfound.html</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/login/unexpected.html</location>
+    </error-page>
+
+
+</web-app>

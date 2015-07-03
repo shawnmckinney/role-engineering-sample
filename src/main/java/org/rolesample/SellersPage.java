@@ -1,0 +1,55 @@
+/*
+ * This is free and unencumbered software released into the public domain.
+ */
+package org.rolesample;
+
+import org.apache.directory.fortress.web.control.FtIndicatingAjaxButton;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
+
+/**
+ * Role Engineering Sample Seller's Page
+ *
+ * @author Shawn McKinney
+ * @version $Rev$
+ */
+public class SellersPage extends WicketSampleBasePage
+{
+    public SellersPage()
+    {
+        add( new SellersPageForm( "pageForm" ) );
+    }
+
+    /**
+     * Page 1 Form
+     */
+    public class SellersPageForm extends Form
+    {
+        SellersPageForm( String id )
+        {
+            super( id );
+
+            add( new Label( "label1", "This is the Seller's Page" ) );
+
+            add( new FtIndicatingAjaxButton( "item.ship" )
+            {
+                @Override
+                protected void onSubmit( AjaxRequestTarget target, Form form )
+                {
+                    logIt( target, "Item, Ship Pressed" );
+                }
+            } );
+
+            add( new FtIndicatingAjaxButton( "auction.create" )
+            {
+                @Override
+                protected void onSubmit( AjaxRequestTarget target, Form form )
+                {
+                    logIt( target, "Auction, Create Pressed" );
+                }
+            } );
+
+        }
+    }
+}
