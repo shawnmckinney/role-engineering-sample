@@ -28,7 +28,7 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 public class WicketApplication extends WebApplication
 {
 
-	// TODO STEP 7a: uncomment save fortress session to wicket session:
+	// Load Fortress session into wicket session container:
 	@Override
 	public Session newSession(Request request, Response response)
 	{
@@ -42,7 +42,7 @@ public class WicketApplication extends WebApplication
 	{
 		super.init();
 
-		// TODO STEP 7b: uncomment to enable injection of fortress spring beans:
+		// Enable injection of fortress spring beans:
 		getComponentInstantiationListeners().add(new SpringComponentInjector(this));
 
 		// Catch runtime exceptions this way:

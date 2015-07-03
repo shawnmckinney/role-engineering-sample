@@ -5,6 +5,7 @@ package org.rolesample;
 
 import org.apache.directory.fortress.core.AccessMgr;
 import org.apache.directory.fortress.realm.J2eePolicyMgr;
+import org.apache.directory.fortress.web.control.FtBookmarkablePageLink;
 import org.apache.directory.fortress.web.control.FtIndicatingAjaxButton;
 import org.apache.directory.fortress.web.control.SecUtils;
 import org.apache.log4j.Logger;
@@ -26,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public abstract class WicketSampleBasePage extends WebPage
 {
-    // TODO STEP 8a: enable spring injection of fortress bean here:
+    // Enable spring injection of fortress bean here:
     @SpringBean
     private AccessMgr accessMgr;
     @SpringBean
@@ -34,7 +35,7 @@ public abstract class WicketSampleBasePage extends WebPage
 
     public WicketSampleBasePage()
     {
-        // TODO STEP 8b: uncomment call to enableFortress:
+        // Call to enableFortress runtime:
         try
         {
             SecUtils.enableFortress( this, ( HttpServletRequest ) getRequest().getContainerRequest(), j2eePolicyMgr,
@@ -45,9 +46,9 @@ public abstract class WicketSampleBasePage extends WebPage
             String error = "WicketSampleBasePage caught security exception : " + se;
             LOG.warn( error );
         }
-        // TODO STEP 8c: change to FtBookmarkablePageLink:
-        add( new BookmarkablePageLink( "sellerspage.link", SellersPage.class ) );
-        add( new BookmarkablePageLink( "buyerspage.link", BuyersPage.class ) );
+        // Add FtBookmarkablePageLink will show link to user if they have the permission:
+        add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );
+        add( new FtBookmarkablePageLink( "buyerspage.link", BuyersPage.class ) );
         final Link actionLink = new Link( "logout.link" )
         {
             @Override
