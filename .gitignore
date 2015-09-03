@@ -4,7 +4,7 @@ target
 .settings
 .idea
 eclipse-classes
-*.properties
+fortress.properties
 *.log
 *.iml
 *.ipr
