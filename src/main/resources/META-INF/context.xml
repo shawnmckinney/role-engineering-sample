@@ -1,0 +1,8 @@
+<Context reloadable="true">
+
+    <Realm className="org.apache.directory.fortress.realm.tomcat.Tc7AccessMgrProxy"
+           defaultRoles=""
+           containerType="TomcatContext"
+           realmClasspath=""
+            />
+</Context>

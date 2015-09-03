@@ -77,6 +77,8 @@
                 <permgrant objName="SellersPage" opName="link" roleNm="Sellers"/>
                 <permgrant objName="BuyersPage" opName="link" roleNm="Buyers"/>
 
+<!--                add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );-->
+
                 <permgrant objName="Item" opName="bid" roleNm="Buyers"/>
                 <permgrant objName="Item" opName="buy" roleNm="Buyers"/>
                 <permgrant objName="Item" opName="ship" roleNm="Sellers"/>

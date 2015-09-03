@@ -16,5 +16,4 @@ dist
 .externalToolBuilders
 apache-ant-1.9.1
 maven-eclipse.xml
-context.xml
 
