@@ -15,7 +15,6 @@
         <ant.version>1.8.1</ant.version>
         <slf4j.version>1.5.11</slf4j.version>
         <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
-        <spring.version>3.2.3.RELEASE</spring.version>
         <version.log4j>1.2.17</version.log4j>
         <version.junit>4.11</version.junit>
         <javadoc.version>2.9.1</javadoc.version>
