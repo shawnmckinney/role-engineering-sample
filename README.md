@@ -180,5 +180,5 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
 
  5. Try a different user.
   * Each has different access rights to application.
-  * A DSD constraint prevents johndoe from acquiring both buyer and seller role at same time.
+  * A DSD constraint prevents user ##johndoe## from acquiring both buyer and seller role at same time.
   * All users have **account.create** and **item.search** through role inheritance with the base role: **Users**.
