@@ -1,10 +1,9 @@
 # Overview of the role-engineering-sample README
 
  * This document demonstrates how to build and deploy the fortress role engineering sample.
- * It builds on this blog posting:
+ * The intent is to demonstrate standard RBAC role engineering practice.
+ * It builds on this posting:
   * [The Seven Steps of Role Engineering](https://iamfortress.wordpress.com/2015/03/05/the-seven-steps-of-role-engineering/)
- * We use the Apache Wicket web framework for app.  To learn the details of combining Apache Wicket and Fortress, check out:
- [wicket-sample](https://github.com/shawnmckinney/wicket-sample)
 
 -------------------------------------------------------------------------------
 ## fortress-saml-demo prerequisites
@@ -102,7 +101,7 @@ perms.cached=true
 
 -------------------------------------------------------------------------------
 
-## Test fortress security with spring saml sso enabled
+## Understand the policy enforced
 
  To get understanding of security policy, check out ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
 
@@ -142,7 +141,7 @@ perms.cached=true
  ```
  There are three pages, each page has three buttons.  Page access is granted as follows:
 
-## User-to-Role Assignment Table
+# User-to-Role Assignment Table
 | user          | Buyers        | Sellers       |
 | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          |
@@ -150,7 +149,7 @@ perms.cached=true
 | rtaylor       | false         | true          |
 
 
-## User-to-Link Access
+# User-to-Link Access
 | user          | Buyer's Page  | Seller's Page |
 | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          |
@@ -158,14 +157,17 @@ perms.cached=true
 | rtaylor       | false         | true          |
 
 
-## User-to-Button Access
+# User-to-Button Access
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
 | ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- |
 | johndoe       | true           | true           | true           | true           | true           | true           |
 | ssmith        | true           | true           | true           | true           | false          | false          |
 | rtaylor       | true           | false          | false          | true           | true           | true           |
 
-* DSD constraint between the Buyers and Sellers roles prevents johnbdoe from being both simultaneously.
+
+DSD constraint between the Buyers and Sellers roles prevents johnbdoe from being both simultaneously.
+
+## Test the role engineering sample
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
