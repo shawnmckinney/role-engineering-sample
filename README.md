@@ -86,7 +86,7 @@ perms.cached=true
  **Note**: if problem  with tomcat auto-deploy, manually deploy role-engineering-sample.war to webapps or change connection info used during tomcat:deploy in [pom.xml](pom.xml).
  ```
  <plugin>
-     <groupId>org.codehaus.mojo</groupId>
+4     <groupId>org.codehaus.mojo</groupId>
      <artifactId>tomcat-maven-plugin</artifactId>
      <version>1.0-beta-1</version>
      <configuration>
@@ -117,6 +117,7 @@ perms.cached=true
      <userrole userId="rtaylor" name="Sellers"/>
  </adduserrole>
 
+* DSD constraint between the Buyers and Sellers roles prevents both from being activated simultaneously.
 
  <addpermgrant>
      <permgrant objName="SellersPage" opName="link" roleNm="Sellers"/>
@@ -128,37 +129,52 @@ perms.cached=true
      <permgrant objName="Item" opName="search" roleNm="Users"/>
      <permgrant objName="Account" opName="create" roleNm="Users"/>
  </addpermgrant>
+
+ <addroleinheritance>
+     <relationship child="Buyers" parent="Users"/>
+     <relationship child="Sellers" parent="Users"/>
+ </addroleinheritance>
+
+ <addsdset>
+     <sdset name="BuySel" setmembers="Buyers,Sellers" cardinality="2" setType="DYNAMIC" description="User can only be activate one role of this set"/>
+ </addsdset>
  ...
  ```
  There are three pages, each page has three buttons.  Page access is granted as follows:
 
-| user          | page1         | page2         | page3         |
-| ------------- | ------------- | ------------- | ------------- |
-| sam*          | true          | true          | true          |
-| sam1          | true          | false         | true          |
-| sam2          | false         | true          | false         |
-| sam3          | false         | false         | true          |
+## User-to-Role Assignment Table
+| user          | Buyers        | Sellers       |
+| ------------- | ------------- | ------------- |
+| johndoe       | true          | true          |
+| ssmith        | true          | false         |
+| rtaylor       | false         | true          |
+
+
+## User-to-Link Access
+| user          | Buyer's Page  | Seller's Page |
+| ------------- | ------------- | ------------- |
+| johndoe       | true          | true          |
+| ssmith        | true          | false         |
+| rtaylor       | false         | true          |
+
+
+## User-to-Button Access
+| user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
+| ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- |
+| johndoe       | true           | true           | true           | true           | true           | true           |
+| ssmith        | true           | true           | true           | true           | false          | false          |
+| rtaylor       | true           | false          | false          | true           | true           | true           |
+
+* DSD constraint between the Buyers and Sellers roles prevents johnbdoe from being both simultaneously.
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
  2. Login to authentication form.
- ![IdP Login Page](src/main/javadoc/doc-files/SSO-Circle-Login.png "IdP Login Page")
 
- 4. If everything works you load the Home page which has links to click on:
+ 3. If everything works the Home page loads which has links and buttons to click on:
  ![sam*](src/main/javadoc/doc-files/Fortress-Saml-Demo-SuperUser.png "Home Page - sam*")
 
- 5. Try a different user...
-  * Map to different fortress users at [**MY Profile**](https://idp.ssocircle.com/sso/hos/SelfCare.jsp) page on ssocircle.com.
-  * Enter a new **Surname**.  (Originally called **Last Name** when profile first created - both refer to same field)
-  * Pick from one of these: sam1, sam2, sam3 or sam*.
-  * Be sure to enter the original IdP password in **Old password** field before clicking on the **Submit** button to save your changes.
- ![User Profile Page](src/main/javadoc/doc-files/SSO-Circle-Change-Sam1-User.png "User Profile Page")
-  * Delete the cookies from browser corresponding with the IdP and SP websites.
-  * Now, go back to Step 1 and login again.  Will be different authorizations corresponding with other userIds mapped when redirected to **Launch Page**.
- ![sam1](src/main/javadoc/doc-files/Fortress-Saml-User1-Page.png "Home Page - sam1")
-
- 6. Each fortress userId (mapped to **Last Name** field at IdP) has different access policy.
-  * sam1 - access to page one
-  * sam2 - access to page two
-  * sam3 - access to page three
-  * sam* - access to all pages
+ 4. Try a different user...
+  * Each user has different access rights to application.
+  * A DSD constraint prevents johndoe from acquiring both buyer and seller role at same time.
+  * All users have account.create and item.search through role inheritance with the base role: 'Users'.
