@@ -103,41 +103,9 @@ perms.cached=true
 
 ## Understand the policy enforced
 
- To get understanding of security policy, check out ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
+To gain understanding into the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
 
- excerpt from file:
- ```
- ...
-
- <adduserrole>
-     <userrole userId="johndoe" name="Role_Buyers"/>
-     <userrole userId="johndoe" name="Role_Sellers"/>
-     <userrole userId="ssmith" name="Role_Buyers"/>
-     <userrole userId="rtaylor" name="Role_Sellers"/>
- </adduserrole>
-
- <addpermgrant>
-     <permgrant objName="SellersPage" opName="link" roleNm="Role_Sellers"/>
-     <permgrant objName="BuyersPage" opName="link" roleNm="Role_Buyers"/>
-     <permgrant objName="Item" opName="bid" roleNm="Role_Buyers"/>
-     <permgrant objName="Item" opName="buy" roleNm="Role_Buyers"/>
-     <permgrant objName="Item" opName="ship" roleNm="Role_Sellers"/>
-     <permgrant objName="Auction" opName="create" roleNm="Role_Sellers"/>
-     <permgrant objName="Item" opName="search" roleNm="Users"/>
-     <permgrant objName="Account" opName="create" roleNm="Users"/>
- </addpermgrant>
-
- <addroleinheritance>
-     <relationship child="Role_Buyers" parent="Users"/>
-     <relationship child="Role_Sellers" parent="Users"/>
- </addroleinheritance>
-
- <addsdset>
-     <sdset name="BuySel" setmembers="Role_Buyers,Role_Sellers" cardinality="2" setType="DYNAMIC" description="User can only be activate one role of this set"/>
- </addsdset>
- ...
- ```
- There are three pages, each page has three buttons.  Page access is granted as follows:
+There are three pages, each page has buttons that are guarded by permissions.  Role access is granted as follows:
 
 # User-to-Role Assignment Table
 | user          | Role_Buyers   | Role_Sellers  |
@@ -146,6 +114,7 @@ perms.cached=true
 | ssmith        | true          | false         |
 | rtaylor       | false         | true          |
 
+Which then controls which pages a user can hit:
 
 # User-to-Page Access Table
 | user          | Buyer's Page  | Seller's Page |
@@ -154,6 +123,7 @@ perms.cached=true
 | ssmith        | true          | false         |
 | rtaylor       | false         | true          |
 
+Along with the buttons:
 
 # User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
