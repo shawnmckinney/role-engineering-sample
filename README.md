@@ -167,7 +167,8 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
  2. Login to authentication form.
 
  3. If everything works the Home page loads with links and buttons to click on:
- ![sam*](src/main/javadoc/doc-files/Fortress-Saml-Demo-SuperUser.png "Home Page - sam*")
+
+ ![sam*](src/main/javadoc/doc-files/Role-Engineering-Sample-Home-Page.png "Home Page - johndoe")
 
  4. Try a different user...
   * Each has different access rights to application.
