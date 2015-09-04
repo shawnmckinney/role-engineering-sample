@@ -105,8 +105,9 @@ perms.cached=true
 
 To gain understanding into the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
 
-There are three pages, each page has buttons that are guarded by permissions.  Role access is granted as follows:
+There are three pages, each page has buttons that are guarded by permissions.
 
+Role access is granted as follows:
 # User-to-Role Assignment Table
 | user          | Role_Buyers   | Role_Sellers  |
 | ------------- | ------------- | ------------- |
@@ -114,24 +115,21 @@ There are three pages, each page has buttons that are guarded by permissions.  R
 | ssmith        | true          | false         |
 | rtaylor       | false         | true          |
 
-Which then controls which pages a user can hit:
-
+Which then controls which page they can use
 # User-to-Page Access Table
-| user          | Buyer's Page  | Seller's Page |
-| ------------- | ------------- | ------------- |
-| johndoe       | true          | true          |
-| ssmith        | true          | false         |
-| rtaylor       | false         | true          |
+| user          | Home Page     | Buyer's Page  | Seller's Page |
+| ------------- | ------------- | ------------- | ------------- |
+| johndoe       | true          | true          | true          |
+| ssmith        | true          | true          | false         |
+| rtaylor       | true          | false         | true          |
 
-Along with the buttons:
-
+Along with which buttons are active:
 # User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
 | ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- |
 | johndoe       | true           | true           | true           | true           | true           | true           |
 | ssmith        | true           | true           | true           | true           | false          | false          |
 | rtaylor       | true           | false          | false          | true           | true           | true           |
-
 
 *DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from activating both simultaneously.
 
