@@ -103,7 +103,7 @@ perms.cached=true
 
 # Understand the security policy using RBAC
 
-To gain full understanding into the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
+To gain full understanding of the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
 
 There are three pages, each page has buttons that are guarded by permissions.  The permissions are granted to a particular user via a role assignment.
 
@@ -122,7 +122,7 @@ Both roles inherit from their parent role:
 | Role_Buyers   | Users         |
 | Role_Sellers  | Users         |
 
-The page access are guarded with spring security page-level controls which map to the role activated in user's session.
+The pages are guarded with spring's #FilterSecurityInterceptor which maps to the roles activated into the user's session by the container.
 
 User to Page access is granted as follows:
 ## User-to-Page Access Table
@@ -132,7 +132,7 @@ User to Page access is granted as follows:
 | ssmith        | true          | true          | false         |
 | rtaylor       | true          | false         | true          |
 
-But a mutual exclusion constraint between the role_buyers and role_sellers restricts activation at runtime:
+But a mutual exclusion constraint between the #role_buyers and #role_sellers restricts activation during runtime:
 ## Role-to-Role Dynamic Separation of Duty Constraint Table
 | set name      | Set Members   | Cardinality   |
 | ------------- | ------------- | ------------- |
@@ -140,12 +140,11 @@ But a mutual exclusion constraint between the role_buyers and role_sellers restr
 |               | Role_Buyers   |               |
 |               |               |               |
 
-Preventing a user from being both a buyer and seller at same time.
+Preventing any one user from being both at same time.
 
-The buttons are guarded by permission checks.  The permissions are dependent on which roles are active in a session.
+These buttons are guarded by permission checks.  The permissions are dependent on which roles are active.
 
-Below is the list of permissions per user.  When testing keep in mind that DSD constraints will limit further
-preventing to all at the same time.
+Below is the list of permissions per user.  When testing, keep in mind that DSD constraints will further limit preventing access to all at the same time.
 
 ## User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
@@ -156,10 +155,10 @@ preventing to all at the same time.
 
 *DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from having all of these simultaneously.
 
-In a standard rbac setting the web app could provide a drop-down control where the user gets to choose active role.
+In a standard RBAC setting the web app could provide a drop-down control where the user gets to choose active role.
 This would allow user to choose between performing as a Buyer or Seller on a given session.
 
-To learn how this can be done, check out: [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
+To see learn how this can be done, check out: [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
 
 # Test the role engineering sample
 
