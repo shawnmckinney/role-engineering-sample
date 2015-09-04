@@ -103,7 +103,7 @@ perms.cached=true
 
 ## Understand the security policy using RBAC
 
-To gain full understanding of the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
+To gain full understanding of the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/role-engineering-sample-security-policy.xml).
 
 There are three pages, each page has buttons and links that are guarded by permissions.  The permissions are granted to a particular user via a role assignment.
 
