@@ -101,39 +101,62 @@ perms.cached=true
 
 -------------------------------------------------------------------------------
 
-## Understand the policy enforced
+# Understand the security policy using RBAC
 
-To gain understanding into the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
+To gain full understanding into the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
 
-There are three pages, each page has buttons that are guarded by permissions.
+There are three pages, each page has buttons that are guarded by permissions.  The permissions are granted to a particular user via a role assignment.
 
-Role access is granted as follows:
-# User-to-Role Assignment Table
+For this app, user-to-role access is granted as follows:
+## User-to-Role Assignment Table
 | user          | Role_Buyers   | Role_Sellers  |
 | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          |
 | ssmith        | true          | false         |
 | rtaylor       | false         | true          |
 
-Which then controls which page they can use
-# User-to-Page Access Table
+Both roles inherit from their parent role:
+## Role Inheritance Table
+| role name     | parent name   |
+| ------------- | ------------- |
+| Role_Buyers   | Users         |
+| Role_Sellers  | Users         |
+
+The page access are guarded with spring security page-level controls which map to the role activated in user's session.
+
+This tables with user-to-role assigments shows the candidates:
+## User-to-Page Access Table
 | user          | Home Page     | Buyer's Page  | Seller's Page |
 | ------------- | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          | true          |
 | ssmith        | true          | true          | false         |
 | rtaylor       | true          | false         | true          |
 
-Along with which buttons are active:
-# User-to-Permission Access Table
+But a mutual exclusion constraint between buyers and sellers restricts role activation at runtime:
+## Role-to-Role Dynamic Separation of Duty Constraint Table
+| set name      | Set Members   | Cardinality   |
+| ------------- | ------------- | ------------- |
+| BuySel        | Role_Sellers  | 2             |
+|               | Role_Buyers   |               |
+|               |               |               |
+
+Preventing a user from being both a buyer and seller at same time.
+
+The buttons are guarded by permission checks.  The permissions are also dependent on role activation constraints.
+
+Below is the list of possible permissions for each user.  When testing keep in mind DSD constraints will limit any one user
+from having access to all of the permissions at the same time.
+
+## User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
 | ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- |
-| johndoe       | true           | true           | true           | true           | true           | true           |
+| johndoe     * | true           | true           | true           | true           | true           | true           |
 | ssmith        | true           | true           | true           | true           | false          | false          |
 | rtaylor       | true           | false          | false          | true           | true           | true           |
 
-*DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from activating both simultaneously.
+*DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from having all of these simultaneously.
 
-## Test the role engineering sample
+# Test the role engineering sample
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
