@@ -2,8 +2,8 @@
 
  * This document demonstrates how to build and deploy the fortress role engineering sample.
  * The intent is to demonstrate standard RBAC role engineering practice.
- * It builds on this posting:
-  * [The Seven Steps of Role Engineering](https://iamfortress.wordpress.com/2015/03/05/the-seven-steps-of-role-engineering/)
+ * The intent is not a how-to guide for fortress security in java web envs.  For that look to [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
+ * For more info about the role engineering process: [The Seven Steps of Role Engineering](https://iamfortress.net/2015/03/05/the-seven-steps-of-role-engineering/)
 
 -------------------------------------------------------------------------------
 ## fortress-saml-demo prerequisites
@@ -110,39 +110,37 @@ perms.cached=true
  ...
 
  <adduserrole>
-     <userrole userId="johndoe" name="Buyers"/>
-     <userrole userId="johndoe" name="Sellers"/>
-     <userrole userId="ssmith" name="Buyers"/>
-     <userrole userId="rtaylor" name="Sellers"/>
+     <userrole userId="johndoe" name="Role_Buyers"/>
+     <userrole userId="johndoe" name="Role_Sellers"/>
+     <userrole userId="ssmith" name="Role_Buyers"/>
+     <userrole userId="rtaylor" name="Role_Sellers"/>
  </adduserrole>
 
-* DSD constraint between the Buyers and Sellers roles prevents both from being activated simultaneously.
-
  <addpermgrant>
-     <permgrant objName="SellersPage" opName="link" roleNm="Sellers"/>
-     <permgrant objName="BuyersPage" opName="link" roleNm="Buyers"/>
-     <permgrant objName="Item" opName="bid" roleNm="Buyers"/>
-     <permgrant objName="Item" opName="buy" roleNm="Buyers"/>
-     <permgrant objName="Item" opName="ship" roleNm="Sellers"/>
-     <permgrant objName="Auction" opName="create" roleNm="Sellers"/>
+     <permgrant objName="SellersPage" opName="link" roleNm="Role_Sellers"/>
+     <permgrant objName="BuyersPage" opName="link" roleNm="Role_Buyers"/>
+     <permgrant objName="Item" opName="bid" roleNm="Role_Buyers"/>
+     <permgrant objName="Item" opName="buy" roleNm="Role_Buyers"/>
+     <permgrant objName="Item" opName="ship" roleNm="Role_Sellers"/>
+     <permgrant objName="Auction" opName="create" roleNm="Role_Sellers"/>
      <permgrant objName="Item" opName="search" roleNm="Users"/>
      <permgrant objName="Account" opName="create" roleNm="Users"/>
  </addpermgrant>
 
  <addroleinheritance>
-     <relationship child="Buyers" parent="Users"/>
-     <relationship child="Sellers" parent="Users"/>
+     <relationship child="Role_Buyers" parent="Users"/>
+     <relationship child="Role_Sellers" parent="Users"/>
  </addroleinheritance>
 
  <addsdset>
-     <sdset name="BuySel" setmembers="Buyers,Sellers" cardinality="2" setType="DYNAMIC" description="User can only be activate one role of this set"/>
+     <sdset name="BuySel" setmembers="Role_Buyers,Role_Sellers" cardinality="2" setType="DYNAMIC" description="User can only be activate one role of this set"/>
  </addsdset>
  ...
  ```
  There are three pages, each page has three buttons.  Page access is granted as follows:
 
 # User-to-Role Assignment Table
-| user          | Buyers        | Sellers       |
+| user          | Role_Buyers   | Role_Sellers  |
 | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          |
 | ssmith        | true          | false         |
@@ -165,7 +163,7 @@ perms.cached=true
 | rtaylor       | true           | false          | false          | true           | true           | true           |
 
 
-DSD constraint between the Buyers and Sellers roles prevents johnbdoe from being both simultaneously.
+*DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from activating both simultaneously.
 
 ## Test the role engineering sample
 
@@ -173,10 +171,10 @@ DSD constraint between the Buyers and Sellers roles prevents johnbdoe from being
 
  2. Login to authentication form.
 
- 3. If everything works the Home page loads which has links and buttons to click on:
+ 3. If everything works the Home page loads with links and buttons to click on:
  ![sam*](src/main/javadoc/doc-files/Fortress-Saml-Demo-SuperUser.png "Home Page - sam*")
 
  4. Try a different user...
-  * Each user has different access rights to application.
+  * Each has different access rights to application.
   * A DSD constraint prevents johndoe from acquiring both buyer and seller role at same time.
   * All users have account.create and item.search through role inheritance with the base role: 'Users'.

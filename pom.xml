@@ -12,6 +12,8 @@
     <properties>
         <wicket.version>6.19.0</wicket.version>
         <wicket.jquery.version>6.19.0</wicket.jquery.version>
+        <spring.version>4.2.0.RELEASE</spring.version>
+        <spring.security.version>4.0.2.RELEASE</spring.security.version>
         <ant.version>1.8.1</ant.version>
         <slf4j.version>1.5.11</slf4j.version>
         <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
@@ -68,6 +70,23 @@
             <groupId>org.wicketstuff</groupId>
             <artifactId>wicketstuff-inmethod-grid</artifactId>
             <version>${wicket.jquery.version}</version>
+        </dependency>
+
+        <!-- Spring Security DEPENDENCIES -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.security.version}</version>
         </dependency>
 
         <!-- Servlet API DEPENDENCIES -->

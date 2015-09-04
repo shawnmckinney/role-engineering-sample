@@ -8,6 +8,16 @@
 
     <display-name>Role Engineering Sample Project</display-name>
 
+    <!-- Enable Spring Security filter chain proxy: -->
+    <filter>
+        <filter-name>filterChainProxy</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>filterChainProxy</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <filter>
         <filter-name>org.rolesample</filter-name>
         <filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
@@ -25,8 +35,7 @@
         <dispatcher>INCLUDE</dispatcher>
     </filter-mapping>
 
-
-    <!-- TODO STEP 4a: uncomment to enable fortress spring bean injection: -->
+    <!-- enable fortress spring bean injection: -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:applicationContext.xml</param-value>
@@ -36,7 +45,7 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!-- TODO STEP 4b: uncomment to enable Java EE Security: -->
+    <!-- enable Java EE Security: -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>app</web-resource-name>
@@ -64,6 +73,12 @@
     </login-config>
     <security-role>
         <role-name>Users</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Role_Buyers</role-name>
+    </security-role>
+    <security-role>
+        <role-name>Role_Sellers</role-name>
     </security-role>
 
     <error-page>

@@ -32,25 +32,25 @@
             </adduser>
 
             <adduserrole>
-                <userrole userId="johndoe" name="Buyers"/>
-                <userrole userId="johndoe" name="Sellers"/>
-                <userrole userId="ssmith" name="Buyers"/>
-                <userrole userId="rtaylor" name="Sellers"/>
+                <userrole userId="johndoe" name="Role_Buyers"/>
+                <userrole userId="johndoe" name="Role_Sellers"/>
+                <userrole userId="ssmith" name="Role_Buyers"/>
+                <userrole userId="rtaylor" name="Role_Sellers"/>
             </adduserrole>
 
             <addrole>
                 <role name="Users" description="Basic rights for all Buyers and Sellers"/>
-                <role name="Buyers" description="May bid on and purchase products"/>
-                <role name="Sellers" description="May start auctions and ship items"/>
+                <role name="Role_Buyers" description="May bid on and purchase products"/>
+                <role name="Role_Sellers" description="May start auctions and ship items"/>
             </addrole>
 
             <addroleinheritance>
-                <relationship child="Buyers" parent="Users"/>
-                <relationship child="Sellers" parent="Users"/>
+                <relationship child="Role_Buyers" parent="Users"/>
+                <relationship child="Role_Sellers" parent="Users"/>
             </addroleinheritance>
 
             <addsdset>
-                <sdset name="BuySel" setmembers="Buyers,Sellers" cardinality="2" setType="DYNAMIC" description="User can only be activate one role of this set"/>
+                <sdset name="BuySel" setmembers="Role_Buyers,Role_Sellers" cardinality="2" setType="DYNAMIC" description="User can only be activate one role of this set"/>
             </addsdset>
 
             <addpermobj>
@@ -74,15 +74,15 @@
             </addpermop>
 
             <addpermgrant>
-                <permgrant objName="SellersPage" opName="link" roleNm="Sellers"/>
-                <permgrant objName="BuyersPage" opName="link" roleNm="Buyers"/>
+                <permgrant objName="SellersPage" opName="link" roleNm="Role_Sellers"/>
+                <permgrant objName="BuyersPage" opName="link" roleNm="Role_Buyers"/>
 
 <!--                add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );-->
 
-                <permgrant objName="Item" opName="bid" roleNm="Buyers"/>
-                <permgrant objName="Item" opName="buy" roleNm="Buyers"/>
-                <permgrant objName="Item" opName="ship" roleNm="Sellers"/>
-                <permgrant objName="Auction" opName="create" roleNm="Sellers"/>
+                <permgrant objName="Item" opName="bid" roleNm="Role_Buyers"/>
+                <permgrant objName="Item" opName="buy" roleNm="Role_Buyers"/>
+                <permgrant objName="Item" opName="ship" roleNm="Role_Sellers"/>
+                <permgrant objName="Auction" opName="create" roleNm="Role_Sellers"/>
                 <permgrant objName="Item" opName="search" roleNm="Users"/>
                 <permgrant objName="Account" opName="create" roleNm="Users"/>
             </addpermgrant>
