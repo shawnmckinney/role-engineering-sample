@@ -167,8 +167,7 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
  2. Login with Java EE authentication form:
  ![Login Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Login-Page.png "Home Page - johndoe")
 
- 3. Use these creds:
- | User-Password Table           |
+ 3. User-Password Table
  | userId        | Password      |
  | ------------- | ------------- |
  | johndoe       | password      |
