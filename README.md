@@ -164,7 +164,13 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
- 2. Login to authentication form.
+ 2. Login to authentication form.  Use creds:
+ ## User-Password Table
+ | userId        | Password      |
+ | ------------- | ------------- |
+ | johndoe       | password      |
+ | ssmith        | password      |
+ | rtaylor       | password      |
 
  3. If everything works the Home page loads with links and buttons to click on:
 
