@@ -85,7 +85,7 @@ perms.cached=true
  **Note**: if problem  with tomcat auto-deploy, manually deploy role-engineering-sample.war to webapps or change connection info used during tomcat:deploy in [pom.xml](pom.xml).
  ```
  <plugin>
-4     <groupId>org.codehaus.mojo</groupId>
+     <groupId>org.codehaus.mojo</groupId>
      <artifactId>tomcat-maven-plugin</artifactId>
      <version>1.0-beta-1</version>
      <configuration>
