@@ -167,7 +167,7 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
  2. Login to authentication form.
  ![Login Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Login-Page.png "Home Page - johndoe")
 
- 3. Use creds:
+ 3. Use these creds to test:
  ## User-Password Table
  | userId        | Password      |
  | ------------- | ------------- |
@@ -175,7 +175,7 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
  | ssmith        | password      |
  | rtaylor       | password      |
 
- 4. If everything works the Home page loads with links and buttons to click on:
+ 4. If everything is working, the Home page loads with some links and buttons to click on:
  ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Home-Page.png "Home Page - johndoe")
 
  5. Try a different user.
