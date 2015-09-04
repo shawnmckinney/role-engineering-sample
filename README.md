@@ -105,7 +105,7 @@ perms.cached=true
 
 To gain full understanding of the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
 
-There are three pages, each page has buttons that are guarded by permissions.  The permissions are granted to a particular user via a role assignment.
+There are three pages, each page has buttons and links that are guarded by permissions.  The permissions are granted to a particular user via a role assignment.
 
 For this app, user-to-role access is granted as follows:
 ## User-to-Role Assignment Table
@@ -122,7 +122,7 @@ Both roles inherit from their parent role:
 | Role_Buyers   | Users         |
 | Role_Sellers  | Users         |
 
-The pages are guarded with spring's #FilterSecurityInterceptor which maps to the roles activated into the user's session by the container.
+The pages are guarded with spring's #FilterSecurityInterceptor# which maps to the roles activated into the user's session by the container.
 
 User to Page access is granted as follows:
 ## User-to-Page Access Table
@@ -147,13 +147,13 @@ These buttons are guarded by permission checks.  The permissions are dependent o
 Below is the list of permissions per user.  When testing, keep in mind that DSD constraints will further limit preventing access to all at the same time.
 
 ## User-to-Permission Access Table
-| user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
-| ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- |
-| johndoe     * | true           | true           | true           | true           | true           | true           |
-| ssmith        | true           | true           | true           | true           | false          | false          |
-| rtaylor       | true           | false          | false          | true           | true           | true           |
+| user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create | BuyersPage.link  | SellersPage.link |
+| ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | ---------------- | ---------------- |
+| johndoe       | true           | true           | true           | true           | true           | true           | true             | true             |
+| ssmith        | true           | true           | true           | true           | false          | false          | true             | false            |
+| rtaylor       | true           | false          | false          | true           | true           | true           | false            | true             |
 
-*DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from having all of these simultaneously.
+*DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from activating both simultaneously.*
 
 In a standard RBAC setting the web app could provide a drop-down control where the user gets to choose active role.
 This would allow user to choose between performing as a Buyer or Seller on a given session.
