@@ -283,7 +283,6 @@
                                     <sysproperty key="version" value="${project.version}"/>
                                     <sysproperty key="tenant" value="HOME"/>
                                     <arg value="-buildfile"/>
-<!--                                    <arg file="./src/main/resources/wicket-sample-security-policy.xml"/>-->
                                     <arg file="./src/main/resources/role-engineering-sample-security-policy.xml"/>
                                 </java>
                             </target>

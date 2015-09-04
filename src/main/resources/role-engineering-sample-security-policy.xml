@@ -64,7 +64,6 @@
             <addpermop>
                 <permop objName="SellersPage" opName="link" />
                 <permop objName="BuyersPage" opName="link" />
-
                 <permop objName="Item" opName="bid" description="Bid on a given product"/>
                 <permop objName="Item" opName="buy" description="Purchase a given product"/>
                 <permop objName="Item" opName="ship" description="Place a product up for sale"/>
@@ -76,9 +75,6 @@
             <addpermgrant>
                 <permgrant objName="SellersPage" opName="link" roleNm="Role_Sellers"/>
                 <permgrant objName="BuyersPage" opName="link" roleNm="Role_Buyers"/>
-
-<!--                add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );-->
-
                 <permgrant objName="Item" opName="bid" roleNm="Role_Buyers"/>
                 <permgrant objName="Item" opName="buy" roleNm="Role_Buyers"/>
                 <permgrant objName="Item" opName="ship" roleNm="Role_Sellers"/>
