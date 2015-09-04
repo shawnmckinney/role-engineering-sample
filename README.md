@@ -164,7 +164,10 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
- 2. Login to authentication form.  Use creds:
+ 2. Login to authentication form.
+ ![Login Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Login-Page.png "Home Page - johndoe")
+
+ 3. Use creds:
  ## User-Password Table
  | userId        | Password      |
  | ------------- | ------------- |
@@ -172,11 +175,10 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
  | ssmith        | password      |
  | rtaylor       | password      |
 
- 3. If everything works the Home page loads with links and buttons to click on:
+ 4. If everything works the Home page loads with links and buttons to click on:
+ ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Home-Page.png "Home Page - johndoe")
 
- ![sam*](src/main/javadoc/doc-files/Role-Engineering-Sample-Home-Page.png "Home Page - johndoe")
-
- 4. Try a different user...
+ 5. Try a different user.
   * Each has different access rights to application.
   * A DSD constraint prevents johndoe from acquiring both buyer and seller role at same time.
-  * All users have account.create and item.search through role inheritance with the base role: 'Users'.
+  * All users have **account.create** and **item.search** through role inheritance with the base role: **Users**.
