@@ -122,7 +122,7 @@ Both roles inherit from their parent role:
 | Role_Buyers   | Users         |
 | Role_Sellers  | Users         |
 
-The pages are guarded with spring's #FilterSecurityInterceptor# which maps to the roles activated into the user's session by the container.
+The pages are guarded with spring's **FilterSecurityInterceptor** which maps to the roles activated into the user's session by the container.
 
 User to Page access is granted as follows:
 ## User-to-Page Access Table
@@ -132,7 +132,7 @@ User to Page access is granted as follows:
 | ssmith        | true          | true          | false         |
 | rtaylor       | true          | false         | true          |
 
-But a mutual exclusion constraint between the #role_buyers and #role_sellers restricts activation during runtime:
+But a mutual exclusion constraint between the **role_buyers** and **role_sellers** restricts activation during runtime:
 ## Role-to-Role Dynamic Separation of Duty Constraint Table
 | set name      | Set Members   | Cardinality   |
 | ------------- | ------------- | ------------- |
@@ -153,7 +153,7 @@ Below is the list of permissions per user.  When testing, keep in mind that DSD 
 | ssmith        | true           | true           | true           | true           | false          | false          | true             | false            |
 | rtaylor       | true           | false          | false          | true           | true           | true           | false            | true             |
 
-*DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from activating both simultaneously.*
+**DSD constraint between the Role_Buyers and Role_Sellers prevents johndoe from activating both simultaneously.**
 
 In a standard RBAC setting the web app could provide a drop-down control where the user gets to choose active role.
 This would allow user to choose between performing as a Buyer or Seller on a given session.
