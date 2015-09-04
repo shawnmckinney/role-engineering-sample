@@ -147,7 +147,7 @@ perms.cached=true
 | rtaylor       | false         | true          |
 
 
-# User-to-Link Access
+# User-to-Page Access Table
 | user          | Buyer's Page  | Seller's Page |
 | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          |
@@ -155,7 +155,7 @@ perms.cached=true
 | rtaylor       | false         | true          |
 
 
-# User-to-Button Access
+# User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create |
 | ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- |
 | johndoe       | true           | true           | true           | true           | true           | true           |
