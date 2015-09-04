@@ -101,14 +101,14 @@ perms.cached=true
 
 -------------------------------------------------------------------------------
 
-# Understand the security policy using RBAC
+## Understand the security policy using RBAC
 
 To gain full understanding of the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/RoleEngineeringSample.xml).
 
 There are three pages, each page has buttons and links that are guarded by permissions.  The permissions are granted to a particular user via a role assignment.
 
 For this app, user-to-role access is granted as follows:
-## User-to-Role Assignment Table
+### User-to-Role Assignment Table
 | user          | Role_Buyers   | Role_Sellers  |
 | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          |
@@ -116,7 +116,7 @@ For this app, user-to-role access is granted as follows:
 | rtaylor       | false         | true          |
 
 Both roles inherit from their parent role:
-## Role Inheritance Table
+### Role Inheritance Table
 | role name     | parent name   |
 | ------------- | ------------- |
 | Role_Buyers   | Users         |
@@ -125,7 +125,7 @@ Both roles inherit from their parent role:
 The pages are guarded with spring's **FilterSecurityInterceptor** which maps to the roles activated into the user's session by the container.
 
 User to Page access is granted as follows:
-## User-to-Page Access Table
+### User-to-Page Access Table
 | user          | Home Page     | Buyer's Page  | Seller's Page |
 | ------------- | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          | true          |
@@ -133,7 +133,7 @@ User to Page access is granted as follows:
 | rtaylor       | true          | false         | true          |
 
 But a mutual exclusion constraint between the **role_buyers** and **role_sellers** restricts activation during runtime:
-## Role-to-Role Dynamic Separation of Duty Constraint Table
+### Role-to-Role Dynamic Separation of Duty Constraint Table
 | set name      | Set Members   | Cardinality   |
 | ------------- | ------------- | ------------- |
 | BuySel        | Role_Sellers  | 2             |
@@ -146,7 +146,7 @@ These buttons are guarded by permission checks.  The permissions are dependent o
 
 Below is the list of permissions per user.  When testing, keep in mind that DSD constraints will further limit preventing access to all at the same time.
 
-## User-to-Permission Access Table
+### User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create | BuyersPage.link  | SellersPage.link |
 | ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | ---------------- | ---------------- |
 | johndoe       | true           | true           | true           | true           | true           | true           | true             | true             |
@@ -160,7 +160,7 @@ This would allow user to choose between performing as a Buyer or Seller on a giv
 
 To see learn how this can be done, check out: [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
 
-# Test the role engineering sample
+## Test the role engineering sample
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
