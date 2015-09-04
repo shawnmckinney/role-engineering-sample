@@ -170,6 +170,7 @@ To see learn how this can be done, check out: [apache-fortress-demo](https://git
  3. User-Password Table
 
 
+ | User Passwword Table          |
  | userId        | Password      |
  | ------------- | ------------- |
  | johndoe       | password      |
