@@ -192,5 +192,5 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
   * Test with user **johndoe**.
   * Switch from Buyer to Seller ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Buyer-to-Seller.png "Switch from Buyer to Seller")
   * Switch from Seller to Buyer ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Seller-to-Buyer.png "Switch from Seller to Buyer")
-  * Without **Super_Users** Screenshot ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Unauthorized.png "Unauthorized User")
+  * Without **Super_Users** role assigned ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Unauthorized.png "Unauthorized User")
 
