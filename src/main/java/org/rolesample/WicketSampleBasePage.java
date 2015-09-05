@@ -4,9 +4,8 @@
 package org.rolesample;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.directory.fortress.core.AccessMgr;
-import org.apache.directory.fortress.core.ReviewMgr;
-import org.apache.directory.fortress.realm.J2eePolicyMgr;
+import org.apache.directory.fortress.core.*;
+import org.apache.directory.fortress.realm.*;
 import org.apache.directory.fortress.web.control.SecUtils;
 import org.apache.directory.fortress.web.control.SecureIndicatingAjaxButton;
 
@@ -53,6 +52,7 @@ public abstract class WicketSampleBasePage extends WebPage
     final String HOME_PAGE_OBJ = "org.rolesample.HomePage";
     final String SWITCH_SELLER_OP = "switchToSeller";
     final String SWITCH_BUYER_OP = "switchToBuyer";
+    final String SWITCH_ROLES_OP = "switchRoles";
 
     public WicketSampleBasePage()
     {
@@ -172,7 +172,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 {
                     getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( IExceptionSettings
                         .AjaxErrorStrategy.REDIRECT_TO_ERROR_PAGE );
-                    if ( checkAccess( HOME_PAGE_OBJ, SWITCH_BUYER_OP ) )
+                    if ( checkAccess( HOME_PAGE_OBJ, SWITCH_ROLES_OP ) )
                     {
                         switchToBuyer();
                         logIt( target, "Switch To Buyer Successful" );
@@ -212,7 +212,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 {
                     getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( IExceptionSettings
                         .AjaxErrorStrategy.REDIRECT_TO_ERROR_PAGE );
-                    if ( checkAccess( HOME_PAGE_OBJ, SWITCH_SELLER_OP ) )
+                    if ( checkAccess( HOME_PAGE_OBJ, SWITCH_ROLES_OP ) )
                     {
                         switchToSeller();
                         logIt( target, "Switch To Seller Successful" );

@@ -34,6 +34,7 @@
             <adduserrole>
                 <userrole userId="johndoe" name="Role_Buyers"/>
                 <userrole userId="johndoe" name="Role_Sellers"/>
+                <userrole userId="johndoe" name="Super_Users"/>
                 <userrole userId="ssmith" name="Role_Buyers"/>
                 <userrole userId="rtaylor" name="Role_Sellers"/>
             </adduserrole>
@@ -42,6 +43,7 @@
                 <role name="Role_Users" description="Basic rights for all Buyers and Sellers"/>
                 <role name="Role_Buyers" description="May bid on and purchase products"/>
                 <role name="Role_Sellers" description="May start auctions and ship items"/>
+                <role name="Super_Users" description="May switch between buyers and sellers"/>
             </addrole>
 
             <addroleinheritance>
@@ -65,8 +67,7 @@
             <addpermop>
                 <permop objName="org.rolesample.HomePage" opName="switchToSeller" type="Button" description="Permission for org.rolesample.HomePage.switchToSeller"/>
                 <permop objName="org.rolesample.HomePage" opName="switchToBuyer" type="Button" description="Permission for org.rolesample.HomePage.switchToBuyer"/>
-                <permop objName="org.rolesample.HomePage" opName="addActiveRole" type="Button" description="Permission for org.rolesample.HomePage.addActiveRole"/>
-                <permop objName="org.rolesample.HomePage" opName="dropActiveRole" type="Button" description="Permission for org.rolesample.HomePage.dropActiveRole"/>
+                <permop objName="org.rolesample.HomePage" opName="switchRoles" type="Button" description="Permission for org.rolesample.HomePage.switchRoles"/>
                 <permop objName="SellersPage" opName="link" />
                 <permop objName="BuyersPage" opName="link" />
                 <permop objName="Item" opName="bid" description="Bid on a given product"/>
@@ -80,6 +81,7 @@
             <addpermgrant>
                 <permgrant objName="org.rolesample.HomePage" opName="switchToSeller" roleNm="Role_Buyers"/>
                 <permgrant objName="org.rolesample.HomePage" opName="switchToBuyer" roleNm="Role_Sellers"/>
+                <permgrant objName="org.rolesample.HomePage" opName="switchRoles" roleNm="Super_Users"/>
                 <permgrant objName="org.rolesample.HomePage" opName="addActiveRole" roleNm="Role_Users"/>
                 <permgrant objName="org.rolesample.HomePage" opName="dropActiveRole" roleNm="Role_Users"/>
                 <permgrant objName="SellersPage" opName="link" roleNm="Role_Sellers"/>
