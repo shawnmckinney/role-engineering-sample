@@ -111,7 +111,7 @@ To gain full understanding, check out the file used to load it into the LDAP dir
 App comprised of three pages, each has buttons and links that are guarded by permissions.  The permissions are granted to a particular user via their role assignments.  But those
 privileges are only realized after role activation.
 
-For this app, user-to-role assignments are granted as follows:
+For this app, user-to-role assignments are:
 ### User-to-Role Assignment Table
 | user          | Role_Buyers   | Role_Sellers  |
 | ------------- | ------------- | ------------- |
@@ -128,7 +128,7 @@ Both roles inherit from a single parent:
 
 The page-level authorization uses Spring Security's **FilterSecurityInterceptor** which maps the roles activated using what was received from the servlet container (via the Tomcat Realm).
 
-User to Page access is granted as follows:
+User to Page access is granted as:
 ### User-to-Page Access Table
 | user          | Home Page     | Buyer's Page  | Seller's Page |
 | ------------- | ------------- | ------------- | ------------- |
