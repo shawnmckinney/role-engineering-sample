@@ -6,7 +6,7 @@
  * For more info about the role engineering process: [The Seven Steps of Role Engineering](https://iamfortress.net/2015/03/05/the-seven-steps-of-role-engineering/)
 
 -------------------------------------------------------------------------------
-## fortress-saml-demo prerequisites
+## role-engineering-sample prerequisites
 1. Java 7 (or greater) sdk
 2. Git
 3. Apache Maven 3
