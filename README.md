@@ -148,7 +148,7 @@ Preventing any one user from being both at same time.
 
 The buttons are guarded by rbac permission checks.  The permissions are dependent on which roles are active.
 
-Below is the list of permissions by user.  The list can be returned using ##AccessMgr.sessionPermissions## rbac API.  When testing, keep in mind that DSD constraints further limit preventing access to all at the same time.
+Below is the list of permissions by user.  The list can be returned using **AccessMgr.sessionPermissions** rbac API.  When testing, keep in mind that DSD constraints further limit preventing access to all at the same time.
 
 ### User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create | BuyersPage.link  | SellersPage.link |
