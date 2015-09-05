@@ -16,6 +16,8 @@ import org.apache.wicket.markup.html.form.Form;
  */
 public class BuyersPage extends WicketSampleBasePage
 {
+    private String userId = getUserid();
+
     public BuyersPage()
     {
         add( new BuyersPageForm( "pageForm" ) );
@@ -30,7 +32,8 @@ public class BuyersPage extends WicketSampleBasePage
         {
             super( id );
 
-            add( new Label( "label1", "Buyers Form" ) );
+            add( new Label( "label1", "Welcome Buyer : " + userId ) );
+            //add( new Label( "label1", "Buyers Form" ) );
 
             add( new FtIndicatingAjaxButton( "item.bid" )
             {

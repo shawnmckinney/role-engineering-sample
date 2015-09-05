@@ -312,6 +312,15 @@ public abstract class WicketSampleBasePage extends WebPage
         }
     }
 
+    protected String getUserid()
+    {
+        String userid;
+        WicketSession session = ( WicketSession ) this.getSession();
+        Session ftSess = session.getSession();
+        userid = ftSess.getUserId();
+        return userid;
+    }
+
     /**
      * Used by the child pages.
      *

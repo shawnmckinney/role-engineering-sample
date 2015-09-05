@@ -16,6 +16,8 @@ import org.apache.wicket.markup.html.form.Form;
  */
 public class SellersPage extends WicketSampleBasePage
 {
+    private String userId = getUserid();
+
     public SellersPage()
     {
         add( new SellersPageForm( "pageForm" ) );
@@ -30,7 +32,7 @@ public class SellersPage extends WicketSampleBasePage
         {
             super( id );
 
-            add( new Label( "label1", "Seller's Form" ) );
+            add( new Label( "label1", "Welcome Seller : " + userId ) );
 
             add( new FtIndicatingAjaxButton( "item.ship" )
             {
