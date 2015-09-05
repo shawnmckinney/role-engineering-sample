@@ -189,9 +189,12 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
 
  6. Switch Roles
   * Roles that are assigned to **Super_Users**, **Role_Buyers** and **Role_Sellers** may switch between Buyer and Seller functions.
-  * Test with user **johndoe** who these assignments.
+  * Test with user **johndoe** who has the necessary role assignments.
   * Johndoe cannot activated both roles in session at same time but can activate either role - using the switch button.
   * Switch from Buyer to Seller ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Buyer-to-Seller.png "Switch from Buyer to Seller")
   * Switch from Seller to Buyer ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Seller-to-Buyer.png "Switch from Seller to Buyer")
   * Without **Super_Users** role assigned will receive this error: ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Unauthorized.png "Unauthorized User")
+
+ 7. Test with different assignments.
+  * Use fortress-web or the fortress-core command-line-interface to setup new users with new role combinations.  How does the app respond with different policies?  What needs to change to make it better?
 
