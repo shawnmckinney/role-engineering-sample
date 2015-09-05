@@ -37,7 +37,7 @@
 ldap.server.type=apacheds
 
 # ApacheDS LDAP host name:
-host=localhost
+host=localhost1
 
 # ApacheDS default port:
 port=10389
@@ -62,7 +62,7 @@ perms.cached=true
  ```
 
 -------------------------------------------------------------------------------
-## Build and deploy fortress-saml-demo
+## Build and deploy role-engineering-sample
 
 1. Set java and maven home env variables.
 
