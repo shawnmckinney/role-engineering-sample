@@ -10,8 +10,8 @@
     <packaging>war</packaging>
 
     <properties>
-        <wicket.version>6.19.0</wicket.version>
-        <wicket.jquery.version>6.19.0</wicket.jquery.version>
+        <wicket.version>6.20.0</wicket.version>
+        <wicket.jquery.version>6.20.0</wicket.jquery.version>
         <spring.version>4.2.0.RELEASE</spring.version>
         <spring.security.version>4.0.2.RELEASE</spring.security.version>
         <ant.version>1.8.1</ant.version>
@@ -25,7 +25,8 @@
 
 
     <dependencies>
-        <!-- TODO STEP 3: uncomment for fortress security: -->
+
+        <!--  FORTRESS DEPENDENCIES -->
         <dependency>
             <groupId>org.apache.directory.fortress</groupId>
             <artifactId>fortress-web</artifactId>
@@ -33,6 +34,7 @@
             <classifier>classes</classifier>
         </dependency>
 
+        <!--  Logging DEPENDENCIES -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
@@ -70,6 +72,30 @@
             <groupId>org.wicketstuff</groupId>
             <artifactId>wicketstuff-inmethod-grid</artifactId>
             <version>${wicket.jquery.version}</version>
+        </dependency>
+
+        <!-- TODO: If this dependency not found, unexpected error occurs (expect noclassfound exception instead) -->
+        <dependency>
+            <groupId>com.googlecode.wicket-jquery-ui</groupId>
+            <artifactId>wicket-kendo-ui</artifactId>
+            <version>${wicket.jquery.version}</version>
+        </dependency>
+
+        <!-- Spring DEPENDENCIES -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <version>1.4.01</version>
         </dependency>
 
         <!-- Spring Security DEPENDENCIES -->

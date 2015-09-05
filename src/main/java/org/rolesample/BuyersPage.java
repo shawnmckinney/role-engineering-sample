@@ -30,7 +30,7 @@ public class BuyersPage extends WicketSampleBasePage
         {
             super( id );
 
-            add( new Label( "label1", "This is the Buyer's Page" ) );
+            add( new Label( "label1", "Buyers Form" ) );
 
             add( new FtIndicatingAjaxButton( "item.bid" )
             {

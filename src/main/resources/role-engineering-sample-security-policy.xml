@@ -39,14 +39,14 @@
             </adduserrole>
 
             <addrole>
-                <role name="Users" description="Basic rights for all Buyers and Sellers"/>
+                <role name="Role_Users" description="Basic rights for all Buyers and Sellers"/>
                 <role name="Role_Buyers" description="May bid on and purchase products"/>
                 <role name="Role_Sellers" description="May start auctions and ship items"/>
             </addrole>
 
             <addroleinheritance>
-                <relationship child="Role_Buyers" parent="Users"/>
-                <relationship child="Role_Sellers" parent="Users"/>
+                <relationship child="Role_Buyers" parent="Role_Users"/>
+                <relationship child="Role_Sellers" parent="Role_Users"/>
             </addroleinheritance>
 
             <addsdset>
@@ -54,6 +54,7 @@
             </addsdset>
 
             <addpermobj>
+                <permobj objName="org.rolesample.HomePage" description="Role Engineering Sample Home Page" ou="p1" type="Page"/>
                 <permobj objName="SellersPage" description="Used by Sellers" ou="p1" />
                 <permobj objName="BuyersPage" description="Used by Buyers" ou="p1" />
                 <permobj objName="Item" description="This product is available for purchase" ou="p1" />
@@ -62,6 +63,10 @@
             </addpermobj>
 
             <addpermop>
+                <permop objName="org.rolesample.HomePage" opName="switchToSeller" type="Button" description="Permission for org.rolesample.HomePage.switchToSeller"/>
+                <permop objName="org.rolesample.HomePage" opName="switchToBuyer" type="Button" description="Permission for org.rolesample.HomePage.switchToBuyer"/>
+                <permop objName="org.rolesample.HomePage" opName="addActiveRole" type="Button" description="Permission for org.rolesample.HomePage.addActiveRole"/>
+                <permop objName="org.rolesample.HomePage" opName="dropActiveRole" type="Button" description="Permission for org.rolesample.HomePage.dropActiveRole"/>
                 <permop objName="SellersPage" opName="link" />
                 <permop objName="BuyersPage" opName="link" />
                 <permop objName="Item" opName="bid" description="Bid on a given product"/>
@@ -73,14 +78,18 @@
             </addpermop>
 
             <addpermgrant>
+                <permgrant objName="org.rolesample.HomePage" opName="switchToSeller" roleNm="Role_Buyers"/>
+                <permgrant objName="org.rolesample.HomePage" opName="switchToBuyer" roleNm="Role_Sellers"/>
+                <permgrant objName="org.rolesample.HomePage" opName="addActiveRole" roleNm="Role_Users"/>
+                <permgrant objName="org.rolesample.HomePage" opName="dropActiveRole" roleNm="Role_Users"/>
                 <permgrant objName="SellersPage" opName="link" roleNm="Role_Sellers"/>
                 <permgrant objName="BuyersPage" opName="link" roleNm="Role_Buyers"/>
                 <permgrant objName="Item" opName="bid" roleNm="Role_Buyers"/>
                 <permgrant objName="Item" opName="buy" roleNm="Role_Buyers"/>
                 <permgrant objName="Item" opName="ship" roleNm="Role_Sellers"/>
                 <permgrant objName="Auction" opName="create" roleNm="Role_Sellers"/>
-                <permgrant objName="Item" opName="search" roleNm="Users"/>
-                <permgrant objName="Account" opName="create" roleNm="Users"/>
+                <permgrant objName="Item" opName="search" roleNm="Role_Users"/>
+                <permgrant objName="Account" opName="create" roleNm="Role_Users"/>
             </addpermgrant>
 
             <addorgunit>

@@ -29,6 +29,11 @@
           factory-method="createInstance">
     </bean>
 
+    <bean id="reviewMgr" class="org.apache.directory.fortress.core.ReviewMgrFactory" scope="prototype"
+          factory-method="createInstance">
+        <constructor-arg value="HOME"/>
+    </bean>
+
     <!-- setup spring security using pre-authenticated (Java EE) strategy -->
     <bean id="filterChainProxy" class="org.springframework.security.web.FilterChainProxy">
         <constructor-arg>
@@ -92,11 +97,11 @@
             <sec:filter-security-metadata-source use-expressions="false">
                 <!-- before spring interceptor recognizes these roles,the j2ee pre-authentication filter requires prior java ee security constraint in web.xml -->
                 <sec:intercept-url pattern="/wicket/bookmarkable/org.rolesample.HomePage"
-                                   access="ROLE_BUYERS,ROLE_SELLERS"/>
+                                   access="ROLE_USERS"/>
                 <sec:intercept-url pattern="/wicket/bookmarkable/org.rolesample.BuyersPage"
-                                   access="ROLE_BUYERS"/>
+                                   access="ROLE_USERS"/>
                 <sec:intercept-url pattern="/wicket/bookmarkable/org.rolesample.SellersPage"
-                                   access="ROLE_SELLERS"/>
+                                   access="ROLE_USERS"/>
             </sec:filter-security-metadata-source>
         </property>
     </bean>

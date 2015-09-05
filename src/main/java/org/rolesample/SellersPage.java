@@ -30,7 +30,7 @@ public class SellersPage extends WicketSampleBasePage
         {
             super( id );
 
-            add( new Label( "label1", "This is the Seller's Page" ) );
+            add( new Label( "label1", "Seller's Form" ) );
 
             add( new FtIndicatingAjaxButton( "item.ship" )
             {

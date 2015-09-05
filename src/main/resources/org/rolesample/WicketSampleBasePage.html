@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!--
   ~ This is free and unencumbered software released into the public domain.
   -->
@@ -22,8 +23,29 @@
         &nbsp
         <a href="#" wicket:id="logout.link">LOGOUT</a>
     </h3>
+
+
     <form wicket:id="usersForm">
 
+        <fieldset>
+            <legend><b>Activate and Deactivate Roles in Session</b></legend>
+
+            <table id="inputFormTableActivate">
+                <tr>
+                    <td>
+                        <button wicket:id="roles.switch.buyer" name="roles.switch.buyer" style="width: 100px">Switch To Buyer</button>
+                    </td>
+                    <td>
+                        <button wicket:id="roles.switch.seller" name="roles.switch.seller" style="width: 100px">Switch To Seller</button>
+                    </td>
+                    <td>
+                        <span wicket:id="inactivatedRoleString"></span>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+        <h2>Menu Buttons</h2>
         <fieldset>
             <legend>These buttons are allowed for all 'Users'</legend>
 
@@ -51,7 +73,6 @@
             </table>
         </fieldset>
     </form>
-
 </div>
 <div id="body">
     <wicket:child />
