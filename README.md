@@ -103,11 +103,14 @@ perms.cached=true
 
 ## Understand the security policy using RBAC
 
-To gain full understanding of the policy, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/role-engineering-sample-security-policy.xml).
+Security policy was derived from this:
+ ![Use Case](src/main/javadoc/doc-files/use-case.png "Simple Security Use Case")
+To gain full understanding, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/role-engineering-sample-security-policy.xml).
 
-There are three pages, each page has buttons and links that are guarded by permissions.  The permissions are granted to a particular user via a role assignment.
+App comprised of three pages, each has buttons and links that are guarded by permissions.  The permissions are granted to a particular user via their role assignments.  But those
+privileges are only realized after role activation.
 
-For this app, user-to-role access is granted as follows:
+For this app, user-to-role assignments are granted as follows:
 ### User-to-Role Assignment Table
 | user          | Role_Buyers   | Role_Sellers  |
 | ------------- | ------------- | ------------- |
@@ -115,14 +118,14 @@ For this app, user-to-role access is granted as follows:
 | ssmith        | true          | false         |
 | rtaylor       | false         | true          |
 
-Both roles inherit from their parent role:
+Both roles inherit from a single parent:
 ### Role Inheritance Table
 | role name     | parent name   |
 | ------------- | ------------- |
 | Role_Buyers   | Users         |
 | Role_Sellers  | Users         |
 
-The pages are guarded with spring's **FilterSecurityInterceptor** which maps to the roles activated into the user's session by the container.
+The page-level authorization uses Spring Security's **FilterSecurityInterceptor** which maps the roles activated using what was received from the servlet container (via the Tomcat Realm).
 
 User to Page access is granted as follows:
 ### User-to-Page Access Table
@@ -142,9 +145,9 @@ But a mutual exclusion constraint between the **role_buyers** and **role_sellers
 
 Preventing any one user from being both at same time.
 
-These buttons are guarded by permission checks.  The permissions are dependent on which roles are active.
+The buttons are guarded by rbac permission checks.  The permissions are dependent on which roles are active.
 
-Below is the list of permissions per user.  When testing, keep in mind that DSD constraints will further limit preventing access to all at the same time.
+Below is the list of permissions by user.  The list can be returned using ##AccessMgr.sessionPermissions## rbac API.  When testing, keep in mind that DSD constraints further limit preventing access to all at the same time.
 
 ### User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create | BuyersPage.link  | SellersPage.link |
