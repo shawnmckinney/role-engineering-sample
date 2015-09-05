@@ -148,7 +148,7 @@ Preventing any one user from being both at same time.
 
 The buttons are guarded by rbac permission checks.  The permissions are dependent on which roles are active.
 
-Below is the list of permissions by user.  The list can be returned using **AccessMgr.sessionPermissions** rbac API.  When testing, keep in mind that DSD constraints further limit preventing access to all at the same time.
+Below is the list of permissions by user.  These list can be returned using [sessionPermissions](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/AccessMgr.html#sessionPermissions(org.apache.directory.fortress.core.rbac.Session)) API.  When testing, keep in mind that DSD constraints further limit preventing access to all at the same time.
 
 ### User-to-Permission Access Table
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create | BuyersPage.link  | SellersPage.link |
@@ -162,7 +162,7 @@ Below is the list of permissions by user.  The list can be returned using **Acce
 In a standard RBAC setting the web app could provide a drop-down control where the user gets to choose active role.
 This would allow user to choose between performing as a Buyer or Seller on a given session.
 
-To see learn how this can be done, check out: [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
+To see how this can be done, check out: [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
 
 ## Test the role engineering sample
 
