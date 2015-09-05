@@ -196,5 +196,6 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
   * Without **Super_Users** role assigned will receive this error: ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Unauthorized.png "Unauthorized User")
 
  7. Test with different assignments.
-  * Use fortress-web or the fortress-core command-line-interface to setup new users with new role combinations.  How does the app respond with different policies?  What needs to change to make it better?
-
+  * Use [fortress-web](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-fortress-web.html) or the
+  [fortress-core command-line-interface](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/cli/package-summary.html)
+  to setup new users with new role combinations.  How does the app respond with different policies?  What needs to change to make it better?
