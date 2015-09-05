@@ -186,3 +186,9 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
   * Each has different access rights to application.
   * A DSD constraint prevents user **johndoe** from acquiring both buyer and seller role at same time.
   * All users have **account.create** and **item.search** through role inheritance with the base role: **Users**.
+
+ 6. Switch Roles
+  * Roles that are assigned to ##Super_Users##, ##Role_Buyers## and ##Role_Sellers## may switch between Buyer and Seller functions.
+  * Test with user ##johndoe##.
+  *  ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Buyer-to-Seller.png "Switch from Buyer to Seller")
+  *  ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Seller-to-Buyer.png "Switch from Seller to Buyer")
