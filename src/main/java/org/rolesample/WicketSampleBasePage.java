@@ -24,6 +24,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.settings.IExceptionSettings;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
@@ -180,8 +181,11 @@ public abstract class WicketSampleBasePage extends WebPage
                     }
                     else
                     {
-                        String msg = "Unauthorized switchToBuyer";
-                        target.appendJavaScript( ";alert('" + msg + "');" );
+                        String msg = "You are not authorized to switch to Buyer";
+                        // In a page
+                        PageParameters parameters = new PageParameters();
+                        parameters.add( "errorValue", msg );
+                        setResponsePage( AuthZErrorPage.class, parameters );
                     }
                 }
 
@@ -220,9 +224,10 @@ public abstract class WicketSampleBasePage extends WebPage
                     }
                     else
                     {
-                        String msg = "Unauthorized switchToSeller";
-                        target.appendJavaScript( ";alert('" + msg + "');" );
-                        //roleSelection = "";
+                        String msg = "You are not authorized to switch to Seller";
+                        PageParameters parameters = new PageParameters();
+                        parameters.add( "errorValue", msg );
+                        setResponsePage( AuthZErrorPage.class, parameters );
                     }
                 }
 

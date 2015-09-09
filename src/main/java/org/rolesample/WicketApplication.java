@@ -17,6 +17,7 @@ import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.cycle.AbstractRequestCycleListener;
 import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.settings.IRequestCycleSettings;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 /**
@@ -55,6 +56,7 @@ public class WicketApplication extends WebApplication
 			}
 		} );
 		getMarkupSettings().setStripWicketTags(true);
+		getRequestCycleSettings().setRenderStrategy( IRequestCycleSettings.RenderStrategy.ONE_PASS_RENDER);
 	}
 
 	/**
