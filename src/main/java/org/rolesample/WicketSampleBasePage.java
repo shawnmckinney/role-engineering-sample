@@ -181,8 +181,7 @@ public abstract class WicketSampleBasePage extends WebPage
                     }
                     else
                     {
-                        String msg = "You are not authorized to switch to Buyer";
-                        // In a page
+                        String msg = "You not authorized switch to Buyer";
                         PageParameters parameters = new PageParameters();
                         parameters.add( "errorValue", msg );
                         setResponsePage( AuthZErrorPage.class, parameters );
@@ -224,7 +223,7 @@ public abstract class WicketSampleBasePage extends WebPage
                     }
                     else
                     {
-                        String msg = "You are not authorized to switch to Seller";
+                        String msg = "You are not authorized switch to Seller";
                         PageParameters parameters = new PageParameters();
                         parameters.add( "errorValue", msg );
                         setResponsePage( AuthZErrorPage.class, parameters );
