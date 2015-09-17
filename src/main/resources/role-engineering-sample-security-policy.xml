@@ -82,8 +82,6 @@
                 <permgrant objName="org.rolesample.HomePage" opName="switchToSeller" roleNm="Role_Buyers"/>
                 <permgrant objName="org.rolesample.HomePage" opName="switchToBuyer" roleNm="Role_Sellers"/>
                 <permgrant objName="org.rolesample.HomePage" opName="switchRoles" roleNm="Super_Users"/>
-                <permgrant objName="org.rolesample.HomePage" opName="addActiveRole" roleNm="Role_Users"/>
-                <permgrant objName="org.rolesample.HomePage" opName="dropActiveRole" roleNm="Role_Users"/>
                 <permgrant objName="SellersPage" opName="link" roleNm="Role_Sellers"/>
                 <permgrant objName="BuyersPage" opName="link" roleNm="Role_Buyers"/>
                 <permgrant objName="Item" opName="bid" roleNm="Role_Buyers"/>
