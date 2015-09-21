@@ -4,6 +4,9 @@
  * The intent is to demonstrate standard RBAC role engineering practice.
  * The intent is not a how-to guide for fortress security in java web envs.  For that look to [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
  * For more info about the role engineering process: [The Seven Steps of Role Engineering](https://iamfortress.net/2015/03/05/the-seven-steps-of-role-engineering/)
+ * Role Engineering Sample App System Diagram
+ ![Use Case](src/main/javadoc/doc-files/Role-Engineering-Block-Diagram-Master.png "System Diagram")
+
 
 -------------------------------------------------------------------------------
 ## role-engineering-sample prerequisites
