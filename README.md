@@ -104,7 +104,7 @@ perms.cached=true
 ## Understand the security policy using RBAC
 
 Security policy was derived from this:
-![Use Case](src/main/javadoc/doc-files/Role-Engineering-Sample-Use-Case.jpg "Simple Security Use Case")
+![Use Case](src/main/javadoc/doc-files/Role-Engineering-Sample-Use-Case.png "Simple Security Use Case")
 
 To gain full understanding, check out the file used to load it into the LDAP directory: ![role-engineering-sample security policy](src/main/resources/role-engineering-sample-security-policy.xml).
 
