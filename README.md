@@ -7,19 +7,14 @@
  * Role Engineering Sample App System Diagram
  ![Use Case](src/main/javadoc/doc-files/Role-Engineering-Block-Diagram-Master.png "System Diagram")
 
-
 -------------------------------------------------------------------------------
-## role-engineering-sample prerequisites
-1. Java 7 (or greater) sdk
-2. Git
-3. Apache Maven 3
-4. Completion of these steps under the [Apache Fortress Ten Minute Guide](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/ten-minute-guide.html):
-    * [Setup Apache Directory Server](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-directory-server.html)
-    * [Setup Apache Directory Studio](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-directory-studio.html)
-    * [Build Apache Fortress Core](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-fortress-core.html)
-    * [Build Apache Fortress Realm](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-fortress-realm.html)
-    * [Setup Apache Tomcat Web Server](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-tomcat.html)
-    * [Build Apache Fortress Web](http://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-fortress-web.html)
+## Prerequisites
+1. Java 7++
+2. Apache Maven 3++
+3. Apache Tomcat 7++
+4. Completed either section in Apache Fortress Core Quickstart:
+    * *SECTION 3. Apache Fortress Core Integration Test* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
+    * *SECTION 4. Apache Fortress Core Integration Test* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
 
 -------------------------------------------------------------------------------
 ## Prepare role-engineering-sample package
@@ -30,38 +25,70 @@
 
 3. cd role-engineering-sample-master
 
-4. Rename [fortress.properties.example](src/main/resources/fortress.properties.example) to fortress.properties.
+8. Rename [fortress.properties.example](src/main/resources/fortress.properties.example) to fortress.properties.
 
- Prepare fortress for ldap server usage.
+ Pick One:
 
- After completing the fortress ten minute guide, this step should be familiar to you.  It is how the fortress runtime gets hooked in with a remote ldap server.
+ a. Prepare fortress for apacheds usage:
+
  ```properties
-# Tells fortress what type of LDAP server in use:
-ldap.server.type=apacheds
+ # This param tells fortress what type of ldap server in use:
+ ldap.server.type=apacheds
 
-# ApacheDS LDAP host name:
-host=localhost1
+ # Use value from [Set Hostname Entry]:
+ host=localhost
 
-# ApacheDS default port:
-port=10389
+ # ApacheDS defaults to this:
+ port=10389
 
-# ApacheDS default:
-admin.user=uid=admin,ou=system
-admin.pw=secret
+ # These credentials are used for read/write access to all nodes under suffix:
+ admin.user=uid=admin,ou=system
+ admin.pw=secret
 
-# This is min/max settings for LDAP connections:
-min.admin.conn=1
-max.admin.conn=10
+ # This is min/max settings for LDAP administrator pool connections that have read/write access to all nodes under suffix:
+ min.admin.conn=1
+ max.admin.conn=10
 
-# This node contains more fortress properties stored on LDAP server:
-config.realm=DEFAULT
-config.root=ou=Config,dc=example,dc=com
+ # This node contains fortress properties stored on behalf of connecting LDAP clients:
+ config.realm=DEFAULT
+ config.root=ou=Config,dc=example,dc=com
 
-# Fortress uses ehcache:
-ehcache.config.file=ehcache.xml
+ # Used by application security components:
+ perms.cached=true
 
-# Fortress web will cache perms in session:
-perms.cached=true
+ # Fortress uses a cache:
+ ehcache.config.file=ehcache.xml
+ ```
+
+ b. Prepare fortress for openldap usage:
+
+ ```properties
+ # This param tells fortress what type of ldap server in use:
+ ldap.server.type=openldap
+
+ # Use value from [Set Hostname Entry]:
+ host=localhost
+
+ # OpenLDAP defaults to this:
+ port=389
+
+ # These credentials are used for read/write access to all nodes under suffix:
+ admin.user=cn=Manager,dc=example,dc=com
+ admin.pw=secret
+
+ # This is min/max settings for LDAP administrator pool connections that have read/write access to all nodes under suffix:
+ min.admin.conn=1
+ max.admin.conn=10
+
+ # This node contains fortress properties stored on behalf of connecting LDAP clients:
+ config.realm=DEFAULT
+ config.root=ou=Config,dc=example,dc=com
+
+ # Used by application security components:
+ perms.cached=true
+
+ # Fortress uses a cache:
+ ehcache.config.file=ehcache.xml
  ```
 
 -------------------------------------------------------------------------------
@@ -72,11 +99,13 @@ perms.cached=true
 2. Run this command from the root package:
 
   Deploy to tomcat server:
+
   ```maven
  mvn clean tomcat:deploy -Dload.file
   ```
 
   Or if already deployed:
+
   ```maven
  mvn clean tomcat:redeploy -Dload.file
   ```
@@ -101,7 +130,7 @@ perms.cached=true
      </configuration>
  </plugin>
  ```
-
+ 
 -------------------------------------------------------------------------------
 
 ## Understand the security policy using RBAC
@@ -116,6 +145,7 @@ privileges are only realized after role activation.
 
 For this app, user-to-role assignments are:
 ### User-to-Role Assignment Table
+
 | user          | Role_Buyers   | Role_Sellers  |
 | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          |
@@ -124,6 +154,7 @@ For this app, user-to-role assignments are:
 
 Both roles inherit from a single parent:
 ### Role Inheritance Table
+
 | role name     | parent name   |
 | ------------- | ------------- |
 | Role_Buyers   | Users         |
@@ -133,6 +164,7 @@ The page-level authorization uses Spring Security's **FilterSecurityInterceptor*
 
 User to Page access is granted as:
 ### User-to-Page Access Table
+
 | user          | Home Page     | Buyer's Page  | Seller's Page |
 | ------------- | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          | true          |
@@ -141,6 +173,7 @@ User to Page access is granted as:
 
 But a mutual exclusion constraint between the **role_buyers** and **role_sellers** restricts activation during runtime:
 ### Role-to-Role Dynamic Separation of Duty Constraint Table
+
 | set name      | Set Members   | Cardinality   |
 | ------------- | ------------- | ------------- |
 | BuySel        | Role_Sellers  | 2             |
@@ -154,6 +187,7 @@ The buttons are guarded by rbac permission checks.  The permissions are dependen
 Below is the list of permissions by user.  These list can be returned using [sessionPermissions](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/AccessMgr.html#sessionPermissions(org.apache.directory.fortress.core.rbac.Session)) API.  When testing, keep in mind that DSD constraints further limit preventing access to all at the same time.
 
 ### User-to-Permission Access Table
+
 | user          | account.create | item.search    | item.bid       | item.buy       | item.ship      | auction.create | BuyersPage.link  | SellersPage.link |
 | ------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | ---------------- | ---------------- |
 | johndoe       | true           | true           | true           | true           | true           | true           | true             | true             |
