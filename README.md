@@ -25,7 +25,7 @@
 
 3. cd role-engineering-sample-master
 
-8. Rename [fortress.properties.example](src/main/resources/fortress.properties.example) to fortress.properties.
+4. Rename [fortress.properties.example](src/main/resources/fortress.properties.example) to fortress.properties.
 
  Pick One:
 
@@ -130,7 +130,7 @@
      </configuration>
  </plugin>
  ```
- 
+
 -------------------------------------------------------------------------------
 
 ## Understand the security policy using RBAC
