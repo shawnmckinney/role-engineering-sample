@@ -58,8 +58,10 @@ public abstract class WicketSampleBasePage extends WebPage
     public WicketSampleBasePage()
     {
         // Add FtBookmarkablePageLink will show link to user if they have the permission:
+/*
         add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );
         add( new FtBookmarkablePageLink( "buyerspage.link", BuyersPage.class ) );
+*/
         final Link actionLink = new Link( "logout.link" )
         {
             @Override
@@ -85,7 +87,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 try
                 {
                     String szPrincipal = principal.toString();
-                    // Pull the RBAC session from the realm and assert into the Web app's session along with user's
+                    // Pull the RBAC session from the realm and assert intno the Web app's session along with user's
                     // perms:
                     SecUtils.initializeSession( this, j2eePolicyMgr, accessMgr, szPrincipal );
                 }
@@ -95,8 +97,11 @@ public abstract class WicketSampleBasePage extends WebPage
                 }
             }
         }
+        add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );
+        add( new FtBookmarkablePageLink( "buyerspage.link", BuyersPage.class ) );
         add( new UsersForm( "usersForm" ) );
         add( new Label( "footer", "This is free and unencumbered software released into the public domain." ) );
+        add( new Label( GlobalIds.INFO_FIELD ));
     }
 
     /**
