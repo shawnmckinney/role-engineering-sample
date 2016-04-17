@@ -13,8 +13,8 @@
 2. Apache Maven 3++
 3. Apache Tomcat 7++
 4. Completed either section in Apache Fortress Core Quickstart:
-    * *SECTION 3. Apache Fortress Core Integration Test* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
-    * *SECTION 4. Apache Fortress Core Integration Test* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
+    * *SECTION 4. Apache Tomcat Setup* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
+    * *SECTION 5. Apache Tomcat Setup* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
 
 -------------------------------------------------------------------------------
 ## Prepare role-engineering-sample package
@@ -92,6 +92,26 @@
  ```
 
 -------------------------------------------------------------------------------
+## Prepare Tomcat for Java EE Security
+
+This sample web app uses Java EE security.
+
+1. Download the fortress realm proxy jar into tomcat/lib folder:
+
+  ```
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/1.0.0/fortress-realm-proxy-1.0.0.jar -P $TOMCAT_HOME/lib
+  ```
+
+  where *TOMCAT_HOME* matches your target env.
+
+2. Restart tomcat for new settings to take effect.
+
+ Note: The proxy is a shim that uses a [URLClassLoader](http://docs.oracle.com/javase/7/docs/api/java/net/URLClassLoader.html) to reach its implementation libs.  It prevents
+ the realm impl libs, pulled in as dependency to web app, from interfering with the container’s system classpath thus providing an error free deployment process free from
+ classloader issues.  The proxy offers the flexibility for each web app to determine its own version/type of security realm to use, satisfying a variety of requirements
+ related to web hosting and multitenancy.
+
+-------------------------------------------------------------------------------
 ## Build and deploy role-engineering-sample
 
 1. Set java and maven home env variables.
@@ -132,7 +152,6 @@
  ```
 
 -------------------------------------------------------------------------------
-
 ## Understand the security policy using RBAC
 
 Security policy was derived from this:
@@ -201,6 +220,7 @@ This would allow user to choose between performing as a Buyer or Seller on a giv
 
 To see how this can be done, check out: [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
 
+-------------------------------------------------------------------------------
 ## Test the role engineering sample
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
