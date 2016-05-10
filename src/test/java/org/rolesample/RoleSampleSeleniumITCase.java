@@ -46,35 +46,55 @@ public class RoleSampleSeleniumITCase
     @Test
     public void testCase1() throws Exception
     {
-        LOG.info( "Begin RoleSampleSeleniumITCase" );
+        LOG.info( "Begin RoleSampleSeleniumITCase Test Case #1" );
         driver.get( baseUrl );
 
         // User ssmith, has access to Buyers page:
         login( GlobalIds.BUYER_USER, "password" );
         TUtils.sleep( 1 );
-        //doNegativeButtonTests( GlobalIds.PAGE_1, GlobalIds.USER_123, GlobalIds.BTN_PAGE_1 );
-        //doActivateTest( GlobalIds.USER_123, GlobalIds.PAGE_1, GlobalIds.BTN_PAGE_1, GlobalIds.ROLE_PAGE1_123, null, "123", "789", false );
-        //TUtils.sleep( 1 );
-        //doNegativeDataTest( GlobalIds.BTN_PAGE_1, GlobalIds.ROLE_PAGE1_123, "456");
-        //TUtils.sleep( 1 );
-        //doNegativeDataTest( GlobalIds.BTN_PAGE_1, GlobalIds.ROLE_PAGE1_123, "789");
-        //driver.findElement( By.linkText( GlobalIds.PAGE_BUYERS_LINK ) ).click();
-        //TUtils.sleep( 1 );
+        doNegativeLinkTest( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.BUYER_USER );
         doNegativeButtonTest( GlobalIds.BUYER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_SHIP );
         doNegativeButtonTest( GlobalIds.BUYER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_AUCTION_CREATE );
+        doUserPositiveButtonTests( GlobalIds.PAGE_BUYERS );
+        doBuyerPositiveButtonTests( GlobalIds.PAGE_BUYERS_LINK, GlobalIds.PAGE_BUYERS );
         logout( GlobalIds.BUYER_USER );
+
+        // User rtaylor, has access to Sellers page:
+        login( GlobalIds.SELLER_USER, "password" );
+        TUtils.sleep( 1 );
+        doNegativeLinkTest( GlobalIds.PAGE_BUYERS_LINK, GlobalIds.SELLER_USER );
+        doNegativeButtonTest( GlobalIds.SELLER_USER, GlobalIds.PAGE_SELLERS, GlobalIds.BTN_ITEM_BID );
+        doNegativeButtonTest( GlobalIds.SELLER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_BUY );
+        doUserPositiveButtonTests( GlobalIds.PAGE_BUYERS );
+        doSellerPositiveButtonTests( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.PAGE_SELLERS );
+        logout( GlobalIds.SELLER_USER );
     }
 
-/*
-    private void doNegativeSellerButtonTests( String linkName, String userId, String pageId )
+    @Test
+    public void testCase2() throws Exception
     {
-        info( "Negative Button test for user: " + userId + ", linkName: " + linkName );
-        if(linkName != null)
-            driver.findElement( By.linkText( linkName ) ).click();
-        doNegativeButtonTest( userId, pageId, GlobalIds.BTN_ITEM_SHIP );
-        doNegativeButtonTest( userId, pageId, GlobalIds.BTN_AUCTION_CREATE );
+        LOG.info( "Begin RoleSampleSeleniumITCase Test Case #2" );
+        driver.get( baseUrl );
+
+        // User johndoe, has access to both Buyers and Sellers page:
+        login( GlobalIds.BOTH_USER, "password" );
+        TUtils.sleep( 1 );
+        doNegativeLinkTest( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.BOTH_USER );
+        doNegativeButtonTest( GlobalIds.BOTH_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_SHIP );
+        doNegativeButtonTest( GlobalIds.BOTH_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_AUCTION_CREATE );
+        doUserPositiveButtonTests( GlobalIds.PAGE_BUYERS );
+        doBuyerPositiveButtonTests( GlobalIds.PAGE_BUYERS_LINK, GlobalIds.PAGE_BUYERS );
+
+        // Now switch to sellers role:
+        driver.findElement( By.name( GlobalIds.BTN_SWITCH_SELLER ) ).click();
+        TUtils.sleep( 1 );
+        doNegativeLinkTest( GlobalIds.PAGE_BUYERS_LINK, GlobalIds.BOTH_USER );
+        doNegativeButtonTest( GlobalIds.SELLER_USER, GlobalIds.PAGE_SELLERS, GlobalIds.BTN_ITEM_BID );
+        doNegativeButtonTest( GlobalIds.SELLER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_BUY );
+        doUserPositiveButtonTests( GlobalIds.PAGE_BUYERS );
+        doSellerPositiveButtonTests( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.PAGE_SELLERS );
+        logout( GlobalIds.BOTH_USER );
     }
-*/
 
     private void doNegativeButtonTest( String userId, String pageId, String buttonId )
     {
@@ -92,41 +112,33 @@ public class RoleSampleSeleniumITCase
             // pass
         }
     }
-/*
-    private void doPositiveDataTest(String buttonPage, String activateRole, String data)
+
+    private void doUserPositiveButtonTests( String pageId )
     {
-        info( "Postive Data test for role: " + activateRole + ", customer: " + data );
-        driver.findElement( By.id( GlobalIds.CUSTOMER_EF_ID ) ).clear();
-        driver.findElement( By.id( GlobalIds.CUSTOMER_EF_ID ) ).sendKeys( data );
-        driver.findElement( By.name( buttonPage + "." + GlobalIds.SEARCH ) ).click();
+        // Click the buttons on the page
+        doPositiveButtonTest(pageId, GlobalIds.BTN_ACCOUNT_CREATE, pageId + "." + GlobalIds.BTN_ACCOUNT_CREATE);
+        doPositiveButtonTest(pageId, GlobalIds.BTN_ITEM_SEARCH, pageId + "." + GlobalIds.BTN_ITEM_SEARCH);
     }
 
-    private void doNegativeDataTest(String buttonPage, String activateRole, String data)
+    private void doBuyerPositiveButtonTests( String linkName, String pageId )
     {
-        info( "Negative Data test for role: " + activateRole + ", customer: " + data );
-        driver.findElement( By.id( GlobalIds.CUSTOMER_EF_ID ) ).clear();
-        driver.findElement( By.id( GlobalIds.CUSTOMER_EF_ID ) ).sendKeys( data );
-        driver.findElement( By.name( buttonPage + "." + GlobalIds.SEARCH ) ).click();
-        if(!processPopup("Unauthorized"))
-            fail("doActivateTest Unauthorized data Test Failed: " + buttonPage + "." + GlobalIds.SEARCH);
-    }
-*/
-
-/*
-    private void doPositiveButtonTests( String linkName, String pageId )
-    {
-        info( "Postive Button test for " + linkName );
         if(linkName != null)
             driver.findElement( By.linkText( linkName ) ).click();
         TUtils.sleep( 1 );
         // Click the buttons on the page
-        doPositiveButtonTest(pageId, GlobalIds.ADD, pageId + "." + GlobalIds.ADD);
-        doPositiveButtonTest(pageId, GlobalIds.UPDATE, pageId + "." + GlobalIds.UPDATE);
-        doPositiveButtonTest(pageId, GlobalIds.DELETE, pageId + "." + GlobalIds.DELETE);
-        doPositiveButtonTest(pageId, GlobalIds.SEARCH, pageId + "." + GlobalIds.SEARCH);
+        doPositiveButtonTest(pageId, GlobalIds.BTN_ITEM_BID, pageId + "." + GlobalIds.BTN_ITEM_BID);
+        doPositiveButtonTest(pageId, GlobalIds.BTN_ITEM_BUY, pageId + "." + GlobalIds.BTN_ITEM_BUY);
     }
 
-*/
+    private void doSellerPositiveButtonTests( String linkName, String pageId )
+    {
+        if(linkName != null)
+            driver.findElement( By.linkText( linkName ) ).click();
+        TUtils.sleep( 1 );
+        // Click the buttons on the page
+        doPositiveButtonTest(pageId, GlobalIds.BTN_AUCTION_CREATE, pageId + "." + GlobalIds.BTN_AUCTION_CREATE);
+        doPositiveButtonTest(pageId, GlobalIds.BTN_ITEM_SHIP, pageId + "." + GlobalIds.BTN_ITEM_SHIP);
+    }
 
     private boolean processPopup(String text)
     {
@@ -148,15 +160,6 @@ public class RoleSampleSeleniumITCase
         return textFound;
     }
 
-/*
-    private void activateRole(String roleName)
-    {
-        info("Activate test for " + roleName);
-        ( ( JavascriptExecutor ) driver ).executeScript( "$(document.getElementById('" + GlobalIds.INACTIVE_ROLES + "')).val('" + roleName + "');" );
-        driver.findElement( By.name( GlobalIds.ROLES_ACTIVATE ) ).click();
-    }
-*/
-
     private void doPositiveButtonTest(String pageId, String buttonId, String alertText)
     {
         info("Positive button test for " + pageId + ", " + buttonId);
@@ -174,10 +177,31 @@ public class RoleSampleSeleniumITCase
         //    fail("Button Test Failed: " + pageId + "." + buttonId);
     }
 
-/*
+    private void login(String userId, String password)
+    {
+        driver.findElement( By.id( GlobalIds.USER_ID ) ).clear();
+        driver.findElement( By.id( GlobalIds.USER_ID ) ).sendKeys( userId );
+        driver.findElement( By.id( GlobalIds.PSWD_FIELD ) ).clear();
+        driver.findElement( By.id( GlobalIds.PSWD_FIELD ) ).sendKeys( password );
+        driver.findElement( By.name( GlobalIds.LOGIN ) ).click();
+        LOG.info( "User: " + userId + " has logged ON" );
+        info("Login User: " + userId);
+    }
+
+    private void logout(String userId)
+    {
+        info( "Logout " + userId );
+        driver.findElement( By.linkText( "LOGOUT" ) ).click();
+        LOG.info( "User: " + userId + " has logged OFF" );
+    }
+
     private void doNegativeLinkTest( String linkName, String userId  )
     {
-        info("Negative link:" + linkName + " test for " + userId);
+        //info( "Negative link test for userId: " + userId + ", linkName" + linkName );
+        info( "Negative link test for " + userId + " on " + linkName);
+        //info("Negative link test for " + linkName + ", and " + userId);
+        //info("Negative button test for " + linkName);
+
         try
         {
             if(driver.findElement( By.linkText( linkName ) ).isEnabled())
@@ -201,54 +225,6 @@ public class RoleSampleSeleniumITCase
         {
             // pass
         }
-
-        // Check that Spring security is enforcing page level security:
-        String pageName = linkName;
-        // convert from link name to page name for url:
-        pageName = pageName.substring( 0, 1 ) + pageName.substring( 1 ).toLowerCase();
-        String unauthorizedUrl = baseUrl + "/wicket/bookmarkable/com.mycompany." + pageName;
-        driver.get( unauthorizedUrl );
-        if(is403())
-        {
-            // pass
-            TUtils.sleep( 1 );
-            driver.navigate().back();
-        }
-        else
-        {
-            fail("Spring Security Test Failed URL: " + unauthorizedUrl + "." + GlobalIds.ADD);
-        }
-    }
-*/
-
-    public boolean is403()
-    {
-        try
-        {
-            driver.findElement(By.id("web_403"));
-            return true;
-        }
-        catch (NoSuchElementException e)
-        {
-            return false;
-        }
-    }
-    private void login(String userId, String password)
-    {
-        driver.findElement( By.id( GlobalIds.USER_ID ) ).clear();
-        driver.findElement( By.id( GlobalIds.USER_ID ) ).sendKeys( userId );
-        driver.findElement( By.id( GlobalIds.PSWD_FIELD ) ).clear();
-        driver.findElement( By.id( GlobalIds.PSWD_FIELD ) ).sendKeys( password );
-        driver.findElement( By.name( GlobalIds.LOGIN ) ).click();
-        LOG.info( "User: " + userId + " has logged ON" );
-        info("Login User: " + userId);
-    }
-
-    private void logout(String userId)
-    {
-        info("Logout " + userId);
-        driver.findElement( By.linkText( "LOGOUT" ) ).click();
-        LOG.info( "User: " + userId + " has logged OFF" );
     }
 
     private void nextPage(WebElement table, String szTableName)

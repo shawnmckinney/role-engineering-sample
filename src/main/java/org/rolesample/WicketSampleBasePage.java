@@ -169,7 +169,7 @@ public abstract class WicketSampleBasePage extends WebPage
 
         private void addRoleActivationComboBoxesAndButtons()
         {
-            add( new SecureIndicatingAjaxButton( this, "roles.switch.buyer", HOME_PAGE_OBJ, SWITCH_BUYER_OP )
+            add( new SecureIndicatingAjaxButton( this, GlobalIds.BTN_SWITCH_BUYER, HOME_PAGE_OBJ, SWITCH_BUYER_OP )
             {
                 private static final long serialVersionUID = 1L;
 
@@ -211,7 +211,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 }
             } );
 
-            add( new SecureIndicatingAjaxButton( this, "roles.switch.seller", HOME_PAGE_OBJ, SWITCH_SELLER_OP )
+            add( new SecureIndicatingAjaxButton( this, GlobalIds.BTN_SWITCH_SELLER, HOME_PAGE_OBJ, SWITCH_SELLER_OP )
             {
                 private static final long serialVersionUID = 1L;
 

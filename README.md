@@ -184,7 +184,7 @@ The page-level authorization uses Spring Security's **FilterSecurityInterceptor*
 User to Page access is granted as:
 ### User-to-Page Access Table
 
-| user          | Home Page     | Buyer's Page  | Seller's Page |
+| user          | Home Page     | Buyers Page  | Sellers Page |
 | ------------- | ------------- | ------------- | ------------- |
 | johndoe       | true          | true          | true          |
 | ssmith        | true          | true          | false         |
@@ -221,7 +221,7 @@ This would allow user to choose between performing as a Buyer or Seller on a giv
 To see how this can be done, check out: [apache-fortress-demo](https://github.com/shawnmckinney/apache-fortress-demo)
 
 -------------------------------------------------------------------------------
-## Test the role engineering sample
+## Manually Test the role engineering sample
 
  1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
@@ -256,3 +256,13 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
   * Use [fortress-web](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-fortress-web.html) or the
   [fortress-core command-line-interface](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/cli/package-summary.html)
   to setup new users with new role combinations.  How does the app respond with different policies?  What needs to change to make it better?
+
+## Automatically Test the role engineering sample
+
+Run the selenium automated test:
+
+ ```
+ mvn test -Dtest=RoleSampleSeleniumITCase
+ ```
+
+ *Requires Firefox on target machine.*

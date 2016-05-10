@@ -27,7 +27,10 @@ public class GlobalIds
     public static final String SELLERS_PAGE_OBJNAME = "Sellers";
 
     public static final String PAGE_BUYERS = "BuyersPage";
-    public static final String PAGE_BUYERS_LINK = "Buyer's Page";
+    public static final String PAGE_BUYERS_LINK = "Buyers Page";
+
+    public static final String PAGE_SELLERS = "SellersPage";
+    public static final String PAGE_SELLERS_LINK = "Sellers Page";
 
 /*
     public static final String PAGE_2 = "PAGE2";
@@ -42,6 +45,9 @@ public class GlobalIds
     public static final String BTN_ITEM_SHIP = "item.ship";
     public static final String BTN_ACCOUNT_CREATE = "account.create";
     public static final String BTN_AUCTION_CREATE = "auction.create";
+
+    public static final String BTN_SWITCH_BUYER = "roles.switch.buyer";
+    public static final String BTN_SWITCH_SELLER = "roles.switch.seller";
 
     public static final String LOGOUT = "logout";
     public static final String INFO_FIELD = "infoField";
