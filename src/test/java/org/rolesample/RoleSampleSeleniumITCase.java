@@ -57,6 +57,12 @@ public class RoleSampleSeleniumITCase
         doNegativeButtonTest( GlobalIds.BUYER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_AUCTION_CREATE );
         doUserPositiveButtonTests( GlobalIds.PAGE_BUYERS );
         doBuyerPositiveButtonTests( GlobalIds.PAGE_BUYERS_LINK, GlobalIds.PAGE_BUYERS );
+        // Now attempt to switch to sellers role:
+        driver.findElement( By.name( GlobalIds.BTN_SWITCH_SELLER ) ).click();
+        // Better not work because user has not been assigned to this role:
+        doNegativeLinkTest( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.BUYER_USER );
+        doNegativeButtonTest( GlobalIds.BUYER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_SHIP );
+        doNegativeButtonTest( GlobalIds.BUYER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_AUCTION_CREATE );
         logout( GlobalIds.BUYER_USER );
 
         // User rtaylor, has access to Sellers page:
@@ -67,6 +73,12 @@ public class RoleSampleSeleniumITCase
         doNegativeButtonTest( GlobalIds.SELLER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_BUY );
         doUserPositiveButtonTests( GlobalIds.PAGE_BUYERS );
         doSellerPositiveButtonTests( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.PAGE_SELLERS );
+        // Now attempt to switch to buyers role:
+        driver.findElement( By.name( GlobalIds.BTN_SWITCH_BUYER ) ).click();
+        // Better not work because user has not been assigned to this role:
+        doNegativeLinkTest( GlobalIds.PAGE_BUYERS_LINK, GlobalIds.SELLER_USER );
+        doNegativeButtonTest( GlobalIds.SELLER_USER, GlobalIds.PAGE_SELLERS, GlobalIds.BTN_ITEM_BID );
+        doNegativeButtonTest( GlobalIds.SELLER_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_BUY );
         logout( GlobalIds.SELLER_USER );
     }
 
