@@ -265,4 +265,6 @@ Run the selenium automated test:
  mvn test -Dtest=RoleSampleSeleniumITCase
  ```
 
- *Requires Firefox on target machine.*
+ Selenium Test Notes:
+ * *This test will log in as each user, perform positive and negative test cases.*
+ * *Requires Firefox on target machine.*
