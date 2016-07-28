@@ -57,11 +57,6 @@ public abstract class WicketSampleBasePage extends WebPage
 
     public WicketSampleBasePage()
     {
-        // Add FtBookmarkablePageLink will show link to user if they have the permission:
-/*
-        add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );
-        add( new FtBookmarkablePageLink( "buyerspage.link", BuyersPage.class ) );
-*/
         final Link actionLink = new Link( "logout.link" )
         {
             @Override
@@ -97,6 +92,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 }
             }
         }
+        // Add FtBookmarkablePageLink will show link to user if they have the permission:
         add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );
         add( new FtBookmarkablePageLink( "buyerspage.link", BuyersPage.class ) );
         add( new UsersForm( "usersForm" ) );
