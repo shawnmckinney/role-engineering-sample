@@ -6,14 +6,15 @@
 
     <groupId>org.apache.directory</groupId>
     <artifactId>role-engineering-sample</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>war</packaging>
 
     <properties>
-        <wicket.version>6.20.0</wicket.version>
-        <wicket.jquery.version>6.20.0</wicket.jquery.version>
-        <spring.version>4.2.0.RELEASE</spring.version>
-        <spring.security.version>4.0.2.RELEASE</spring.security.version>
+        <wicket.version>7.3.0</wicket.version>
+        <wicket.jquery.version>7.3.0</wicket.jquery.version>
+        <wicket.kendo-ui.version>7.3.0</wicket.kendo-ui.version>
+        <spring.version>4.3.1.RELEASE</spring.version>
+        <spring.security.version>4.1.1.RELEASE</spring.security.version>
         <ant.version>1.8.1</ant.version>
         <slf4j.version>1.5.11</slf4j.version>
         <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>

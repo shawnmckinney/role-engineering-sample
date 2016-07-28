@@ -25,7 +25,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
-import org.apache.wicket.settings.IExceptionSettings;
+import org.apache.wicket.settings.ExceptionSettings;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import javax.servlet.http.HttpServletRequest;
@@ -176,7 +176,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form)
                 {
-                    getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( IExceptionSettings
+                    getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( ExceptionSettings
                         .AjaxErrorStrategy.REDIRECT_TO_ERROR_PAGE );
                     if ( checkAccess( HOME_PAGE_OBJ, SWITCH_ROLES_OP ) )
                     {
@@ -218,7 +218,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form)
                 {
-                    getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( IExceptionSettings
+                    getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( ExceptionSettings
                         .AjaxErrorStrategy.REDIRECT_TO_ERROR_PAGE );
                     if ( checkAccess( HOME_PAGE_OBJ, SWITCH_ROLES_OP ) )
                     {
