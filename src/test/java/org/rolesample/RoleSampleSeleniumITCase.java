@@ -4,13 +4,13 @@ import java.lang.String;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.github.bonigarcia.wdm.MarionetteDriverManager;
 import org.apache.log4j.Logger;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
 
 /**
  * This class uses apache selenium firefox driver to drive commander web ui
@@ -26,21 +26,38 @@ public class RoleSampleSeleniumITCase
     @Before
     public void setUp() throws Exception
     {
-        FirefoxProfile ffProfile = new FirefoxProfile();
-        ffProfile.setPreference( "browser.safebrowsing.malware.enabled", false );
-        driver = new FirefoxDriver( ffProfile );
-        driver.manage().window().maximize();
-
         // Use test local default:
         baseUrl = "http://localhost:8080";
-       // baseUrl = "https://IL1SCOLSP102:8443";
-                                    baseUrl += "/role-engineering-sample";
+        // baseUrl = "https://IL1SCOLSP102:8443";
+        baseUrl += "/role-engineering-sample";
         driver.manage().timeouts().implicitlyWait( 2500, TimeUnit.MILLISECONDS );
     }
 
     private void info(String msg)
     {
         ( ( JavascriptExecutor ) driver ).executeScript( "$(document.getElementById('infoField')).val('" + msg + "');" );
+    }
+
+    @BeforeClass
+    public static void setupClass()
+    {
+        MarionetteDriverManager.getInstance().setup();
+    }
+
+    @Before
+    public void setupTest()
+    {
+        driver = new FirefoxDriver( );
+        driver.manage().window().maximize();
+    }
+
+    @After
+    public void teardown()
+    {
+        if (driver != null)
+        {
+            driver.quit();
+        }
     }
 
     @Test
