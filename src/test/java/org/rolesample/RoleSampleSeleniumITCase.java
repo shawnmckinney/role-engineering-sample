@@ -108,7 +108,11 @@ public class RoleSampleSeleniumITCase
         // User johndoe, has access to both Buyers and Sellers page:
         login( GlobalIds.BOTH_USER, "password" );
         TUtils.sleep( 1 );
+
+        // let's start out as a buyer.
         enableBuyer();
+
+        // now make sure they are a buyer.
         doNegativeLinkTest( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.BOTH_USER );
         doNegativeButtonTest( GlobalIds.BOTH_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_SHIP );
         doNegativeButtonTest( GlobalIds.BOTH_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_AUCTION_CREATE );
