@@ -108,6 +108,7 @@ public class RoleSampleSeleniumITCase
         // User johndoe, has access to both Buyers and Sellers page:
         login( GlobalIds.BOTH_USER, "password" );
         TUtils.sleep( 1 );
+        enableBuyer();
         doNegativeLinkTest( GlobalIds.PAGE_SELLERS_LINK, GlobalIds.BOTH_USER );
         doNegativeButtonTest( GlobalIds.BOTH_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_ITEM_SHIP );
         doNegativeButtonTest( GlobalIds.BOTH_USER, GlobalIds.PAGE_BUYERS, GlobalIds.BTN_AUCTION_CREATE );
@@ -325,6 +326,23 @@ public class RoleSampleSeleniumITCase
         finally
         {
             acceptNextAlert = true;
+        }
+    }
+
+    private void enableBuyer()
+    {
+        try
+        {
+            // if not buyer logged on, log on as buyer.
+            if(! driver.findElement( By.linkText( GlobalIds.PAGE_BUYERS_LINK ) ).isEnabled())
+            {
+                driver.findElement( By.name( GlobalIds.BTN_SWITCH_BUYER ) ).click();
+            }
+        }
+        catch (org.openqa.selenium.NoSuchElementException e)
+        {
+            //fail( "enableBuyer error=" + e);
+            driver.findElement( By.name( GlobalIds.BTN_SWITCH_BUYER ) ).click();
         }
     }
 }
