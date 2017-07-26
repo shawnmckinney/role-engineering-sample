@@ -9,7 +9,7 @@
 
 -------------------------------------------------------------------------------
 ## Prerequisites
-1. Java 7++
+1. Java 8
 2. Apache Maven 3++
 3. Apache Tomcat 7++
 4. Completed either section in Apache Fortress Core Quickstart:
@@ -99,7 +99,7 @@ This sample web app uses Java EE security.
 1. Download the fortress realm proxy jar into tomcat/lib folder:
 
   ```
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.0-RC1/fortress-realm-proxy-2.0.0-RC1.jar -P $TOMCAT_HOME/lib
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.0/fortress-realm-proxy-2.0.0.jar -P $TOMCAT_HOME/lib
   ```
 
   where *TOMCAT_HOME* matches your target env.
