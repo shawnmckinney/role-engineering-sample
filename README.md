@@ -104,7 +104,23 @@ This sample web app uses Java EE security.
 
   where *TOMCAT_HOME* matches your target env.
 
-2. Restart tomcat for new settings to take effect.
+
+2. Prepare tomcat to allow autodeploy of role-engineering-sample web app:
+
+ ```
+ sudo vi /usr/local/tomcat8/conf/tomcat-users.xml
+ ```
+
+3. Add tomcat user to deploy role-engineering-sample:
+
+ ```
+ <role rolename="manager-script"/>
+ <role rolename="manager-gui"/>
+ <user username="tcmanager" password="m@nager123" roles="manager-script"/>
+ <user username="tcmanagergui" password="m@nager123" roles="manager-gui"/>
+ ```
+
+4. Restart tomcat for new settings to take effect.
 
  Note: The proxy is a shim that uses a [URLClassLoader](http://docs.oracle.com/javase/7/docs/api/java/net/URLClassLoader.html) to reach its implementation libs.  It prevents
  the realm impl libs, pulled in as dependency to web app, from interfering with the container’s system classpath thus providing an error free deployment process free from
