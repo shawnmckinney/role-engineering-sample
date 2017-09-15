@@ -1,3 +1,6 @@
+<!--
+  ~ This is free and unencumbered software released into the public domain.
+  -->
 <Context reloadable="true">
 
     <Realm className="org.apache.directory.fortress.realm.tomcat.Tc7AccessMgrProxy"
