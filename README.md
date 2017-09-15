@@ -284,7 +284,7 @@ Run the selenium automated test:
  * *This test will log in as each user, perform positive and negative test cases.*
  * *Requires Firefox on target machine.*
 
-## Enable Java Security Manager
+## Enable Java Security Manager (Optional)
 
 Add to java policy file:
 
