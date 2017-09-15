@@ -34,6 +34,7 @@
             <version>${project.version}</version>
             <classifier>classes</classifier>
 
+            <!-- not needed after 2.0.1 release -->
             <exclusions>
                 <exclusion>
                     <groupId>xml-apis</groupId>
