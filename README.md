@@ -286,7 +286,7 @@ Run the selenium automated test:
 
 ## Enable Java Security Manager (Optional)
 
-Add to java policy file:
+1. Add to java policy file:
 
   ```
 grant codeBase "file:${catalina.home}/webapps/role-engineering-sample/-" {
@@ -313,3 +313,11 @@ grant codeBase "file:${catalina.home}/webapps/role-engineering-sample/-" {
     };
 
   ```
+
+ 2. Modify Tomcat server.xml:
+
+  ```
+   <Host name="localhost"  appBase="webapps"
+    unpackWARs="true" autoDeploy="true"
+    deployXML="true">                            <--- Add this declaration
+ ```
