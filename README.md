@@ -283,3 +283,33 @@ Run the selenium automated test:
  Selenium Test Notes:
  * *This test will log in as each user, perform positive and negative test cases.*
  * *Requires Firefox on target machine.*
+
+## Enable Java Security Manager
+
+Add to java policy file:
+
+  ```
+grant codeBase "file:${catalina.home}/webapps/role-engineering-sample/-" {
+    permission java.util.PropertyPermission "org.apache.commons.configuration.filesystem", "read";
+    permission java.util.PropertyPermission "org.apache.directory.fortress", "read";
+    permission java.util.PropertyPermission "fortress.*", "read";
+    permission java.util.PropertyPermission "getenv.*", "read";
+    permission java.util.PropertyPermission "net.sf.ehcache.*", "read";
+    permission java.util.PropertyPermission "wicket.*", "read";
+    permission java.util.PropertyPermission "Wicket_HeaderRenderStrategy", "read";
+    permission java.util.PropertyPermission "java.io.tmpdir", "read";
+    permission java.util.PropertyPermission "tc.active", "read";
+    permission java.util.PropertyPermission "org.springframework.security.core.*", "read";
+    permission java.util.PropertyPermission "spring.security.strategy", "read";
+    permission java.lang.RuntimePermission "getenv.*", "*";
+    permission java.lang.RuntimePermission "accessClassInPackage.org.apache.catalina.util";
+    permission java.lang.RuntimePermission "accessDeclaredMembers";
+    permission java.lang.RuntimePermission "modifyThread";
+    permission java.net.SocketPermission "localhost", "resolve";
+    permission java.net.SocketPermission "127.0.0.1:32768", "connect,resolve";
+    // This one is req'd by xerces:
+    permission  java.lang.reflect.ReflectPermission "suppressAccessChecks";
+    permission java.io.SerializablePermission "enableSubclassImplementation";
+    };
+
+  ```
