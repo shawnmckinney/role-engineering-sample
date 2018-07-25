@@ -4,12 +4,14 @@ import java.lang.String;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.github.bonigarcia.wdm.MarionetteDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.junit.*;
 import static org.junit.Assert.*;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
@@ -23,10 +25,20 @@ public class RoleSampleSeleniumITCase
     private StringBuffer verificationErrors = new StringBuffer();
     private static final Logger LOG = Logger.getLogger( RoleSampleSeleniumITCase.class.getName() );
 
+    private static final String DRIVER_SYS_PROP = "web.driver";
+    private enum DriverType
+    {
+        FIREFOX,
+        CHROME
+    }
+
+    private static DriverType driverType = DriverType.FIREFOX;
+
     @Before
     public void setUp() throws Exception
     {
         // Use test local default:
+        //baseUrl = "http://10.71.6.36:8080";
         baseUrl = "http://localhost:8080";
         // baseUrl = "https://IL1SCOLSP102:8443";
         baseUrl += "/role-engineering-sample";
@@ -41,13 +53,29 @@ public class RoleSampleSeleniumITCase
     @BeforeClass
     public static void setupClass()
     {
-        MarionetteDriverManager.getInstance().setup();
+        String szDriverType = System.getProperty( DRIVER_SYS_PROP );
+        if( StringUtils.isNotEmpty( szDriverType ) && szDriverType.equalsIgnoreCase( DriverType.CHROME.toString() ))
+        {
+            driverType = DriverType.CHROME;
+            WebDriverManager.chromedriver().setup();
+        }
+        else
+        {
+            WebDriverManager.firefoxdriver().setup();
+        }
     }
 
     @Before
     public void setupTest()
     {
-        driver = new FirefoxDriver( );
+        if ( driverType.equals( DriverType.CHROME ) )
+        {
+            driver = new ChromeDriver();
+        }
+        else
+        {
+            driver = new FirefoxDriver( );
+        }
         driver.manage().window().maximize();
     }
 

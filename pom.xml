@@ -6,15 +6,18 @@
 
     <groupId>org.apache.directory</groupId>
     <artifactId>role-engineering-sample</artifactId>
-    <!--<version>2.0.1-SNAPSHOT</version>-->
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <packaging>war</packaging>
 
     <properties>
-        <wicket.version>7.8.0</wicket.version>
-        <wicket.jquery.version>7.7.0</wicket.jquery.version>
+        <wicket.version>7.10.0</wicket.version>
+        <wicket.jquery.version>7.10.0</wicket.jquery.version>
+        <spring.security.version>5.0.0.RELEASE</spring.security.version>
+<!--
+
         <spring.version>4.3.11.RELEASE</spring.version>
         <spring.security.version>4.2.3.RELEASE</spring.security.version>
+-->
         <ant.version>1.9.7</ant.version>
         <slf4j.version>1.7.7</slf4j.version>
         <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
@@ -91,30 +94,12 @@
             <version>${wicket.jquery.version}</version>
         </dependency>
 
-        <!-- Spring DEPENDENCIES -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-expression</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-
-        <!-- Spring Security DEPENDENCIES -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>${spring.security.version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -139,19 +124,17 @@
 
         <!--  Selenium DEPENDENCY FOR TESTING -->
         <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.13.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>1.4.9</version>
+            <version>2.2.4</version>
             <scope>test</scope>
-<!--
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
--->
-
         </dependency>
 
     </dependencies>
