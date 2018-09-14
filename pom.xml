@@ -4,10 +4,36 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.apache.directory</groupId>
+    <groupId>net.iamfortress</groupId>
     <artifactId>role-engineering-sample</artifactId>
     <version>2.0.2</version>
     <packaging>war</packaging>
+
+    <name>Apache Fortress Demo</name>
+    <description>Sample Web App using Apache Fortress and Wicket to demonstrate role engineering concepts.</description>
+    <licenses>
+        <license>
+            <name>Unlicense</name>
+            <url>http://unlicense.org/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/shawnmckinney/role-engineering-sample.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>smckinney</id>
+            <name>Shawn McKinney</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>symas.com</organization>
+            <timezone>-5</timezone>
+        </developer>
+    </developers>
 
     <properties>
         <version.junit>4.12</version.junit>
