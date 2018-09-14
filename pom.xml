@@ -6,123 +6,26 @@
 
     <groupId>org.apache.directory</groupId>
     <artifactId>role-engineering-sample</artifactId>
-    <version>2.0.1</version>
+    <version>2.0.2</version>
     <packaging>war</packaging>
 
     <properties>
-        <wicket.version>7.10.0</wicket.version>
-        <wicket.jquery.version>7.10.0</wicket.jquery.version>
-        <spring.security.version>5.0.0.RELEASE</spring.security.version>
-<!--
-
-        <spring.version>4.3.11.RELEASE</spring.version>
-        <spring.security.version>4.2.3.RELEASE</spring.security.version>
--->
-        <ant.version>1.9.7</ant.version>
-        <slf4j.version>1.7.7</slf4j.version>
-        <version.slf4j.log4j12>1.7.7</version.slf4j.log4j12>
-        <version.log4j>1.2.17</version.log4j>
         <version.junit>4.12</version.junit>
-        <version.jaxb>2.3.0</version.jaxb>
         <javadoc.version>2.9.1</javadoc.version>
         <title>${project.name} ${project.version}</title>
     </properties>
 
     <dependencies>
 
-        <!--  FORTRESS DEPENDENCIES -->
+        <!--  FORTRESS Web pulls in its Core and Realm plus Wicket, Spring, log4j and some others -->
         <dependency>
             <groupId>org.apache.directory.fortress</groupId>
             <artifactId>fortress-web</artifactId>
             <version>${project.version}</version>
             <classifier>classes</classifier>
-
-            <!-- not needed after 2.0.1 release -->
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
-
         </dependency>
 
-        <!--  Logging DEPENDENCIES -->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${version.log4j}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${version.slf4j.log4j12}</version>
-        </dependency>
-
-        <!--  WICKET DEPENDENCIES -->
-        <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-spring</artifactId>
-            <version>${wicket.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.googlecode.wicket-jquery-ui</groupId>
-            <artifactId>wicket-jquery-ui</artifactId>
-            <version>${wicket.jquery.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-core</artifactId>
-            <version>${wicket.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.wicket</groupId>
-            <artifactId>wicket-extensions</artifactId>
-            <version>${wicket.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.wicketstuff</groupId>
-            <artifactId>wicketstuff-inmethod-grid</artifactId>
-            <version>${wicket.jquery.version}</version>
-        </dependency>
-
-        <!-- TODO: If this dependency not found, unexpected error occurs (expect noclassfound exception instead) -->
-        <dependency>
-            <groupId>com.googlecode.wicket-jquery-ui</groupId>
-            <artifactId>wicket-kendo-ui</artifactId>
-            <version>${wicket.jquery.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-
-        <!-- Servlet API DEPENDENCIES -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <!--  JUnit FOR TESTING -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${version.junit}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!--  Selenium DEPENDENCY FOR TESTING -->
+        <!--  Selenium and Junit DEPENDENCY FOR TESTING -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
@@ -134,6 +37,13 @@
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>2.2.4</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
 

@@ -12,24 +12,40 @@
 1. Java 8
 2. Apache Maven 3++
 3. Apache Tomcat 7++
-4. Completed either section in Apache Fortress Core Quickstart:
-    * *SECTION 4. Apache Tomcat Setup* in [README-QUICKSTART-SLAPD.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
-    * *SECTION 5. Apache Tomcat Setup* in [README-QUICKSTART-APACHEDS.md](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)
+4. Basic LDAP server setup by completing either Quickstart
+    * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
+    * [APACHEDS & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-APACHEDS.md)
 
 -------------------------------------------------------------------------------
 ## Prepare role-engineering-sample package
 
-1. [Download ZIP](https://github.com/shawnmckinney/role-engineering-sample/archive/master.zip)
+#### 1. Stage the project.
 
-2. Extract the zip archive to your local machine.
+ a. Download and extract from Github:
 
-3. cd role-engineering-sample-master
+ ```bash
+ wget https://github.com/shawnmckinney/role-engineering-sample/archive/master.zip
+ ```
 
-4. Rename [fortress.properties.example](src/main/resources/fortress.properties.example) to fortress.properties.
+ -- Or --
 
- Pick One:
+ b. Or `git clone` locally:
 
- a. Prepare fortress for apacheds usage:
+ ```git
+ git clone https://github.com/shawnmckinney/role-engineering-sample.git
+ ```
+
+#### 2. Change directory into it:
+
+ ```bash
+ cd role-engineering-sample
+ ```
+
+#### 3. Rename [fortress.properties.example](src/main/resources/fortress.properties.example) to fortress.properties.
+
+ Pick either Apache Directory or OpenLDAP server:
+
+ c. Prepare fortress for ApacheDS usage:
 
  ```properties
  # This param tells fortress what type of ldap server in use:
@@ -44,23 +60,11 @@
  # These credentials are used for read/write access to all nodes under suffix:
  admin.user=uid=admin,ou=system
  admin.pw=secret
-
- # This is min/max settings for LDAP administrator pool connections that have read/write access to all nodes under suffix:
- min.admin.conn=1
- max.admin.conn=10
-
- # This node contains fortress properties stored on behalf of connecting LDAP clients:
- config.realm=DEFAULT
- config.root=ou=Config,dc=example,dc=com
-
- # Used by application security components:
- perms.cached=true
-
- # Fortress uses a cache:
- ehcache.config.file=ehcache.xml
  ```
 
- b. Prepare fortress for openldap usage:
+ -- Or --
+
+ d. Prepare fortress for OpenLDAP usage:
 
  ```properties
  # This param tells fortress what type of ldap server in use:
@@ -75,43 +79,28 @@
  # These credentials are used for read/write access to all nodes under suffix:
  admin.user=cn=Manager,dc=example,dc=com
  admin.pw=secret
-
- # This is min/max settings for LDAP administrator pool connections that have read/write access to all nodes under suffix:
- min.admin.conn=1
- max.admin.conn=10
-
- # This node contains fortress properties stored on behalf of connecting LDAP clients:
- config.realm=DEFAULT
- config.root=ou=Config,dc=example,dc=com
-
- # Used by application security components:
- perms.cached=true
-
- # Fortress uses a cache:
- ehcache.config.file=ehcache.xml
  ```
-
 -------------------------------------------------------------------------------
 ## Prepare Tomcat for Java EE Security
 
 This sample web app uses Java EE security.
 
-1. Download the fortress realm proxy jar into tomcat/lib folder:
+#### 1. Download the fortress realm proxy jar into tomcat/lib folder:
 
   ```
-  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.0/fortress-realm-proxy-2.0.0.jar -P $TOMCAT_HOME/lib
+  wget http://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.2/fortress-realm-proxy-2.0.2.jar -P $TOMCAT_HOME/lib
   ```
 
   where *TOMCAT_HOME* matches your target env.
 
 
-2. Prepare tomcat to allow autodeploy of role-engineering-sample web app:
+#### 2. Prepare tomcat to allow autodeploy of role-engineering-sample web app:
 
  ```
  sudo vi /usr/local/tomcat8/conf/tomcat-users.xml
  ```
 
-3. Add tomcat user to deploy role-engineering-sample:
+#### 3. Add tomcat user to deploy role-engineering-sample:
 
  ```
  <role rolename="manager-script"/>
@@ -119,7 +108,7 @@ This sample web app uses Java EE security.
  <user username="tcmanager" password="m@nager123" roles="manager-script"/>
  ```
 
-4. Restart tomcat for new settings to take effect.
+#### 4. Restart tomcat for new settings to take effect.
 
  Note: The proxy is a shim that uses a [URLClassLoader](http://docs.oracle.com/javase/7/docs/api/java/net/URLClassLoader.html) to reach its implementation libs.  It prevents
  the realm impl libs, pulled in as dependency to web app, from interfering with the container’s system classpath thus providing an error free deployment process free from
@@ -129,9 +118,9 @@ This sample web app uses Java EE security.
 -------------------------------------------------------------------------------
 ## Build and deploy role-engineering-sample
 
-1. Set java and maven home env variables.
+#### 1. Set java and maven home env variables.
 
-2. Run this command from the root package:
+#### 2. Run this command from the root package:
 
   Deploy to tomcat server:
 
@@ -238,12 +227,12 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
 -------------------------------------------------------------------------------
 ## Manually Test the role engineering sample
 
- 1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
+#### 1. Open link to [http://localhost:8080/role-engineering-sample](http://localhost:8080/role-engineering-sample)
 
- 2. Login with Java EE authentication form:
+#### 2. Login with Java EE authentication form:
  ![Login Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Login-Page.png "Home Page - johndoe")
 
- 3. User-Password Table
+#### 3. User-Password Table
 
  | userId        | Password      |
  | ------------- | ------------- |
@@ -251,15 +240,15 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
  | ssmith        | password      |
  | rtaylor       | password      |
 
- 4. If everything is working, the Home page loads with some links and buttons to click on:
+#### 4. If everything is working, the Home page loads with some links and buttons to click on:
  ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Home-Page.png "Home Page - johndoe")
 
- 5. Try a different user.
+#### 5. Try a different user.
   * Each has different access rights to application.
   * A DSD constraint prevents user **johndoe** from activating both buyer and seller role at same time.
   * All users have **account.create** and **item.search** through role inheritance with the base role: **Users**.
 
- 6. Switch Roles
+#### 6. Switch Roles
   * Roles that are assigned to **Super_Users**, **Role_Buyers** and **Role_Sellers** may switch between Buyer and Seller functions.
   * Test with user **johndoe** who has the necessary role assignments.
   * Johndoe cannot activated both roles in session at same time but can activate either role - using the switch button.
@@ -267,7 +256,7 @@ To see how this can be done, check out: [apache-fortress-demo](https://github.co
   * Switch from Seller to Buyer ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Seller-to-Buyer.png "Switch from Seller to Buyer")
   * Without **Super_Users** role assigned will receive this error: ![Home Page](src/main/javadoc/doc-files/Role-Engineering-Sample-Unauthorized.png "Unauthorized User")
 
- 7. Test with different assignments.
+#### 7. Test with different assignments.
   * Use [fortress-web](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/doc-files/apache-fortress-web.html) or the
   [fortress-core command-line-interface](https://directory.apache.org/fortress/gen-docs/latest/apidocs/org/apache/directory/fortress/core/cli/package-summary.html)
   to setup new users with new role combinations.  How does the app respond with different policies?  What needs to change to make it better?
@@ -286,7 +275,7 @@ Run the selenium automated test:
 
 ## Enable Java Security Manager (Optional)
 
-1. Add to java policy file:
+#### 1. Add to java policy file:
 
   ```
 grant codeBase "file:${catalina.home}/webapps/role-engineering-sample/-" {
@@ -314,7 +303,7 @@ grant codeBase "file:${catalina.home}/webapps/role-engineering-sample/-" {
 
   ```
 
- 2. Modify Tomcat server.xml:
+#### 2. Modify Tomcat server.xml:
 
   ```
    <Host name="localhost"  appBase="webapps"
