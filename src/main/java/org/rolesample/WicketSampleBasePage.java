@@ -115,7 +115,7 @@ public abstract class WicketSampleBasePage extends WebPage
             add( new FtIndicatingAjaxButton( "item.search" )
             {
                 @Override
-                protected void onSubmit(AjaxRequestTarget target, Form form)
+                protected void onSubmit(AjaxRequestTarget target)
                 {
                     logIt( target, "Item, Search Pressed" );
                 }
@@ -124,7 +124,7 @@ public abstract class WicketSampleBasePage extends WebPage
             add( new FtIndicatingAjaxButton( "account.create" )
             {
                 @Override
-                protected void onSubmit(AjaxRequestTarget target, Form form)
+                protected void onSubmit(AjaxRequestTarget target)
                 {
                     logIt( target, "Account, Create Pressed" );
                 }
@@ -170,7 +170,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 private static final long serialVersionUID = 1L;
 
                 @Override
-                protected void onSubmit(AjaxRequestTarget target, Form<?> form)
+                protected void onSubmit(AjaxRequestTarget target )
                 {
                     getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( ExceptionSettings
                         .AjaxErrorStrategy.REDIRECT_TO_ERROR_PAGE );
@@ -212,7 +212,7 @@ public abstract class WicketSampleBasePage extends WebPage
                 private static final long serialVersionUID = 1L;
 
                 @Override
-                protected void onSubmit(AjaxRequestTarget target, Form<?> form)
+                protected void onSubmit(AjaxRequestTarget target )
                 {
                     getApplication().getExceptionSettings().setAjaxErrorHandlingStrategy( ExceptionSettings
                         .AjaxErrorStrategy.REDIRECT_TO_ERROR_PAGE );

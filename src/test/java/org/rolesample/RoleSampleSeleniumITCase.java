@@ -38,9 +38,7 @@ public class RoleSampleSeleniumITCase
     public void setUp() throws Exception
     {
         // Use test local default:
-        //baseUrl = "http://10.71.6.36:8080";
         baseUrl = "http://localhost:8080";
-        // baseUrl = "https://IL1SCOLSP102:8443";
         baseUrl += "/role-engineering-sample";
         driver.manage().timeouts().implicitlyWait( 2500, TimeUnit.MILLISECONDS );
     }

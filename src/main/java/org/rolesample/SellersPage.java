@@ -37,7 +37,7 @@ public class SellersPage extends WicketSampleBasePage
             add( new FtIndicatingAjaxButton( "item.ship" )
             {
                 @Override
-                protected void onSubmit( AjaxRequestTarget target, Form form )
+                protected void onSubmit( AjaxRequestTarget target )
                 {
                     logIt( target, "Item, Ship Pressed" );
                 }
@@ -46,7 +46,7 @@ public class SellersPage extends WicketSampleBasePage
             add( new FtIndicatingAjaxButton( "auction.create" )
             {
                 @Override
-                protected void onSubmit( AjaxRequestTarget target, Form form )
+                protected void onSubmit( AjaxRequestTarget target )
                 {
                     logIt( target, "Auction, Create Pressed" );
                 }
