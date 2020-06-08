@@ -12,10 +12,12 @@
 1. Java 8
 2. Apache Maven 3++
 3. Apache Tomcat 8++
-4. Basic LDAP server setup by completing either Quickstart
+4. Basic LDAP server setup by completing one of these:
+    * [OpenLDAP & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-SLAPD.md)
     * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
+    * [APACHEDS & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)    
     * [APACHEDS & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-APACHEDS.md)
-
+    
 -------------------------------------------------------------------------------
 ## Prepare role-engineering-sample package
 
