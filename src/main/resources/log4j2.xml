@@ -18,7 +18,6 @@
         <Logger name="org.apache.wicket.version" level="info"/>
         <Logger name="org.apache.wicket.RequestCycle" level="info"/>
         <Logger name="org.rolesample" level="debug"/>
-        <Logger name="log4j.logger.com.mycompany.dao" level="debug"/>
         <Root level="info">
             <AppenderRef ref="console"/>
         </Root>
