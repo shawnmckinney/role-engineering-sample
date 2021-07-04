@@ -3,7 +3,7 @@
  */
 package org.rolesample;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.directory.fortress.core.*;
 import org.apache.directory.fortress.realm.*;
 import org.apache.directory.fortress.web.control.SecUtils;
@@ -14,7 +14,8 @@ import org.apache.directory.fortress.core.model.UserRole;
 import org.apache.directory.fortress.web.control.FtBookmarkablePageLink;
 import org.apache.directory.fortress.web.control.FtIndicatingAjaxButton;
 import org.apache.directory.fortress.web.control.WicketSession;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.attributes.AjaxCallListener;
@@ -339,5 +340,5 @@ public abstract class WicketSampleBasePage extends WebPage
         target.appendJavaScript( ";alert('" + msg + "');" );
     }
 
-    protected static final Logger LOG = Logger.getLogger( WicketSampleBasePage.class.getName() );
+    protected static final Logger LOG = LoggerFactory.getLogger( WicketSampleBasePage.class.getName() );
 }

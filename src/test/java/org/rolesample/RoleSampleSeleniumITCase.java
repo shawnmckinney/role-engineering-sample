@@ -6,7 +6,8 @@ import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.junit.*;
 import static org.junit.Assert.*;
 
@@ -23,7 +24,7 @@ public class RoleSampleSeleniumITCase
     private String baseUrl;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
-    private static final Logger LOG = Logger.getLogger( RoleSampleSeleniumITCase.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( RoleSampleSeleniumITCase.class.getName() );
 
     private static final String DRIVER_SYS_PROP = "web.driver";
     private enum DriverType

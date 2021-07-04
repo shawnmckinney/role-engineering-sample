@@ -4,7 +4,8 @@
 package org.rolesample;
 
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.wicket.markup.html.basic.Label;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import java.security.Principal;
  */
 public class HomePage extends WicketSampleBasePage
 {
-    private static final Logger LOG = Logger.getLogger( HomePage.class.getName() );
+    private static final Logger LOG = LoggerFactory.getLogger( HomePage.class.getName() );
     public HomePage()
     {
         HttpServletRequest servletReq = (HttpServletRequest)getRequest().getContainerRequest();
