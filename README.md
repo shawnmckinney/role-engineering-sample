@@ -9,7 +9,7 @@
 
 -------------------------------------------------------------------------------
 ## Prerequisites
-1. Java 8
+1. Java 11
 2. Apache Maven >= 3
 3. Apache Tomcat >= 8
 4. Basic LDAP server setup by completing one of these:
@@ -17,7 +17,8 @@
     * [OpenLDAP & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-SLAPD.md)
     * [APACHEDS & Fortress QUICKSTART](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-APACHEDS.md)    
     * [APACHEDS & Fortress QUICKSTART on DOCKER](https://github.com/apache/directory-fortress-core/blob/master/README-QUICKSTART-DOCKER-APACHEDS.md)
-    
+    * [ansible-apache-fortress](https://gitlab.symas.net/symas-public/ansible-apache-fortress)
+   
 -------------------------------------------------------------------------------
 ## Prepare role-engineering-sample package
 
@@ -43,45 +44,58 @@
  cd role-engineering-sample
  ```
 
-#### 3. Rename [fortress.properties.example](src/main/resources/fortress.properties.example) to fortress.properties.
+#### 3. Enable an LDAP server:
 
- Pick either Apache Directory or OpenLDAP server:
+a. Copy the example:
 
- c. Prepare fortress for ApacheDS usage:
+ ```bash
+ cp src/main/resources/fortress.properties.example src/main/resources/fortress.properties
+ ```
+
+b. Edit the file:
+
+ ```bash
+ vi src/main/resources/fortress.properties
+ ```
+
+Pick either Apache Directory or OpenLDAP server:
+
+c. Prepare fortress for ApacheDS usage:
 
  ```properties
  # This param tells fortress what type of ldap server in use:
- ldap.server.type=apacheds
+ldap.server.type=apacheds
 
- # Use value from [Set Hostname Entry]:
- host=localhost
+# Use value from [Set Hostname Entry]:
+host=localhost
 
- # ApacheDS defaults to this:
- port=10389
+# ApacheDS defaults to this:
+port=10389
 
- # These credentials are used for read/write access to all nodes under suffix:
- admin.user=uid=admin,ou=system
- admin.pw=secret
+# These credentials are used for read/write access to all nodes under suffix:
+admin.user=uid=admin,ou=system
+admin.pw=secret
  ```
 
- -- Or --
+-- Or --
 
- d. Prepare fortress for OpenLDAP usage:
+d. Prepare fortress for OpenLDAP usage:
 
  ```properties
  # This param tells fortress what type of ldap server in use:
- ldap.server.type=openldap
+ldap.server.type=openldap
 
- # Use value from [Set Hostname Entry]:
- host=localhost
+# Use value from [Set Hostname Entry]:
+host=localhost
 
- # OpenLDAP defaults to this:
- port=389
+# OpenLDAP defaults to this:
+port=389
 
- # These credentials are used for read/write access to all nodes under suffix:
- admin.user=cn=Manager,dc=example,dc=com
- admin.pw=secret
+# These credentials are used for read/write access to all nodes under suffix:
+admin.user=cn=Manager,dc=example,dc=com
+admin.pw=secret
  ```
+
 -------------------------------------------------------------------------------
 ## Prepare Tomcat for Java EE Security
 
@@ -90,7 +104,7 @@ This sample web app uses Java EE security.
 #### 1. Download the fortress realm proxy jar into tomcat/lib folder:
 
   ```
-  wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.7/fortress-realm-proxy-2.0.7.jar -P $TOMCAT_HOME/lib
+  wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.8/fortress-realm-proxy-2.0.8.jar -P $TOMCAT_HOME/lib
   ```
 
   where *TOMCAT_HOME* matches your target env.
@@ -184,7 +198,7 @@ Both roles inherit from a single parent:
 | Role_Buyers   | Users         |
 | Role_Sellers  | Users         |
 
-The page-level authorization uses Spring Security's **FilterSecurityInterceptor** which maps the roles activated using what was received from the servlet container (via the Tomcat Realm).
+The page-lxevel authorization uses Spring Security's **FilterSecurityInterceptor** which maps the roles activated using what was received from the servlet container (via the Tomcat Realm).
 
 User to Page access is granted as:
 ### User-to-Page Access Table
