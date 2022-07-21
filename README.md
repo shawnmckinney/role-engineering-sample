@@ -26,44 +26,44 @@
 
  a. Download and extract from Github:
 
- ```bash
- wget https://github.com/shawnmckinney/role-engineering-sample/archive/master.zip
- ```
+```bash
+wget https://github.com/shawnmckinney/role-engineering-sample/archive/master.zip
+```
 
  -- Or --
 
  b. Or `git clone` locally:
 
- ```git
- git clone https://github.com/shawnmckinney/role-engineering-sample.git
- ```
+```git
+git clone https://github.com/shawnmckinney/role-engineering-sample.git
+```
 
 #### 2. Change directory into it:
 
- ```bash
- cd role-engineering-sample
- ```
+```bash
+cd role-engineering-sample
+```
 
 #### 3. Enable an LDAP server:
 
 a. Copy the example:
 
- ```bash
- cp src/main/resources/fortress.properties.example src/main/resources/fortress.properties
- ```
+```bash
+cp src/main/resources/fortress.properties.example src/main/resources/fortress.properties
+```
 
 b. Edit the file:
 
- ```bash
- vi src/main/resources/fortress.properties
- ```
+```bash
+vi src/main/resources/fortress.properties
+```
 
 Pick either Apache Directory or OpenLDAP server:
 
 c. Prepare fortress for ApacheDS usage:
 
- ```properties
- # This param tells fortress what type of ldap server in use:
+```properties
+# This param tells fortress what type of ldap server in use:
 ldap.server.type=apacheds
 
 # Use value from [Set Hostname Entry]:
@@ -75,14 +75,14 @@ port=10389
 # These credentials are used for read/write access to all nodes under suffix:
 admin.user=uid=admin,ou=system
 admin.pw=secret
- ```
+```
 
 -- Or --
 
 d. Prepare fortress for OpenLDAP usage:
 
- ```properties
- # This param tells fortress what type of ldap server in use:
+```properties
+# This param tells fortress what type of ldap server in use:
 ldap.server.type=openldap
 
 # Use value from [Set Hostname Entry]:
@@ -94,7 +94,7 @@ port=389
 # These credentials are used for read/write access to all nodes under suffix:
 admin.user=cn=Manager,dc=example,dc=com
 admin.pw=secret
- ```
+```
 
 -------------------------------------------------------------------------------
 ## Prepare Tomcat for Java EE Security
@@ -103,25 +103,25 @@ This sample web app uses Java EE security.
 
 #### 1. Download the fortress realm proxy jar into tomcat/lib folder:
 
-  ```
-  wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.8/fortress-realm-proxy-2.0.8.jar -P $TOMCAT_HOME/lib
-  ```
+```
+wget https://repo.maven.apache.org/maven2/org/apache/directory/fortress/fortress-realm-proxy/2.0.8/fortress-realm-proxy-2.0.8.jar -P $TOMCAT_HOME/lib
+```
 
   where *TOMCAT_HOME* matches your target env.
 
 #### 2. Prepare tomcat to allow autodeploy of role-engineering-sample web app:
 
- ```
- sudo vi /usr/local/tomcat8/conf/tomcat-users.xml
- ```
+```
+sudo vi /usr/local/tomcat8/conf/tomcat-users.xml
+```
 
 #### 3. Add tomcat user to deploy role-engineering-sample:
 
- ```
+```
  <role rolename="manager-script"/>
  <role rolename="manager-gui"/>
  <user username="tcmanager" password="m@nager123" roles="manager-script"/>
- ```
+```
 
 #### 4. Restart tomcat for new settings to take effect.
 
@@ -139,22 +139,24 @@ This sample web app uses Java EE security.
 
   Deploy to tomcat server:
 
-  ```maven
- mvn clean tomcat:deploy -Dload.file
-  ```
+```maven
+mvn clean tomcat:deploy -Dload.file
+```
 
   Or if already deployed:
 
-  ```maven
- mvn clean tomcat:redeploy -Dload.file
-  ```
+```maven
+mvn clean tomcat:redeploy -Dload.file
+```
 
    -Dload.file tells maven to automatically load the role-engineering-sample security policy into ldap.  Since the load needs to happen just once, you may drop the arg from future ops:
-  ```maven
- mvn tomcat:redeploy
-  ```
+
+```maven
+mvn tomcat:redeploy
+```
  **Note**: if problem  with tomcat auto-deploy, manually deploy role-engineering-sample.war to webapps or change connection info used during tomcat:deploy in [pom.xml](pom.xml).
- ```
+
+```
  <plugin>
      <groupId>org.codehaus.mojo</groupId>
      <artifactId>tomcat-maven-plugin</artifactId>
@@ -168,7 +170,7 @@ This sample web app uses Java EE security.
          <password>m@nager123</password>
      </configuration>
  </plugin>
- ```
+```
 
 -------------------------------------------------------------------------------
 ## Understand the security policy using RBAC
