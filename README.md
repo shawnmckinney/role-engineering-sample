@@ -11,7 +11,7 @@
 
 -------------------------------------------------------------------------------
 ## Prerequisites
-1. Java 11
+1. Java >= 11
 2. Apache Maven >= 3
 3. Apache Tomcat >= 8
 4. Basic LDAP server setup by completing one of these:
