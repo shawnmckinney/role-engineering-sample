@@ -1,8 +1,8 @@
 /*
- * This is free and unencumbered software released into the public domain.
+ * © 2023 iamfortress.net
  */
 /*
- * This is free and unencumbered software released into the public domain.
+ * © 2023 iamfortress.net
  */
 package org.rolesample;
 
