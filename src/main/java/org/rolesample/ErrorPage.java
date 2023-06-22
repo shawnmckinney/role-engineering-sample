@@ -15,6 +15,11 @@ import org.apache.wicket.model.Model;
  */
 public class ErrorPage extends WicketSampleBasePage
 {
+    public ErrorPage( )
+    {
+        add( new Label( "title", new Model<>( "Runtime Exception Occurred" ) ) );
+        add( new Label( "message", new Model<>( "runtime exception" ) ) );
+    }
     public ErrorPage( Exception e )
     {
         add( new Label( "title", new Model<>( "Runtime Exception Occurred" ) ) );
