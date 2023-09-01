@@ -9,7 +9,7 @@
 
     <groupId>net.iamfortress</groupId>
     <artifactId>role-engineering-sample</artifactId>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0</version>
     <packaging>war</packaging>
 
     <name>Apache Fortress Demo</name>
