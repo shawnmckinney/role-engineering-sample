@@ -1,5 +1,5 @@
 /*
- * © 2023 iamfortress.net
+ * © 2025 iamfortress.net
  */
 package org.rolesample;
 
@@ -97,7 +97,7 @@ public abstract class WicketSampleBasePage extends WebPage
         add( new FtBookmarkablePageLink( "sellerspage.link", SellersPage.class ) );
         add( new FtBookmarkablePageLink( "buyerspage.link", BuyersPage.class ) );
         add( new UsersForm( "usersForm" ) );
-        add( new Label( "footer", "© 2023 iamfortress.net" ) );
+        add( new Label( "footer", "© 2025 iamfortress.net" ) );
         add( new Label( GlobalIds.INFO_FIELD ));
     }
 
