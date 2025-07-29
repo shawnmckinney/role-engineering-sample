@@ -1,11 +1,12 @@
 package org.rolesample;
 
 import java.lang.String;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.junit.*;
@@ -41,7 +42,7 @@ public class RoleSampleSeleniumITCase
         // Use test local default:
         baseUrl = "http://localhost:8080";
         baseUrl += "/role-engineering-sample";
-        driver.manage().timeouts().implicitlyWait( 2500, TimeUnit.MILLISECONDS );
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
     }
 
     private void info(String msg)
